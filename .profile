@@ -1,8 +1,9 @@
 # ~/.profile: executed by Bourne-compatible login shells.
+# shellcheck source=/dev/null
 
 if [ "$BASH" ]; then
-  if [ -f ~/.bashrc ]; then
-    . ~/.bashrc
+  if [ -f "$HOME/.bashrc" ]; then
+    source "$HOME/.bashrc"
   fi
 fi
 

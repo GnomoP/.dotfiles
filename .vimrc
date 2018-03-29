@@ -117,7 +117,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " manage the error window
-nmap <silent> <Leader>le :Error<CR>
+nmap <silent> <Leader>le :Errors<CR>
 nmap <silent> <Leader>lc :lclose<CR>
 
 " shellcheck arguments
@@ -128,8 +128,8 @@ nmap <silent> <Leader>ze :edit $MYVIMRC<CR>
 nmap <silent> <Leader>zt :tabe $MYVIMRC<CR>
 nmap <silent> <Leader>zs :source $MYVIMRC<CR>
 
-nmap <silent> <Leader>te :tabedit <C>
-nmap <silent> <Leader>tn :tabnew <CR>
+nmap <silent> <Leader>te :tabedit<CR>
+nmap <silent> <Leader>tn :tabnew<CR>
 
 nmap <silent> <A-Up> :wincmd k<CR>
 nmap <silent> <A-Down> :wincmd j<CR>

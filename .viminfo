@@ -7,7 +7,6 @@
 # Value of 'encoding' when this file was written
 *encoding=utf-8
 
-
 # hlsearch on (H) or off (h):
 ~h
 # Last Search Pattern:
@@ -254,31 +253,31 @@ $
 	wvim
 |3,0,0,0,1,0,1522390464,"wvim"
 ""1	LINE	0
-	
+
 |3,1,1,1,1,0,1522389776,""
 "2	LINE	0
-	
+
 |3,0,2,1,1,0,1522389776,""
 "3	LINE	0
-	
+
 |3,0,3,1,1,0,1522389776,""
 "4	LINE	0
-	
+
 |3,0,4,1,1,0,1522389776,""
 "5	LINE	0
-	
+
 |3,0,5,1,1,0,1522389776,""
 "6	LINE	0
-	
+
 |3,0,6,1,1,0,1522389776,""
 "7	LINE	0
-	
+
 |3,0,7,1,1,0,1522389776,""
 "8	LINE	0
-	
+
 |3,0,8,1,1,0,1522389776,""
 "9	LINE	0
-	
+
 |3,0,9,1,1,0,1522389776,""
 "i	CHAR	0
 	a€kla€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr
@@ -1649,3 +1648,5 @@ $
 	^	7	14
 	.	7	13
 	+	7	13
+# vim: syntax=viminfo
+# vim: set ts=2 sw=2 tw=80 et :
