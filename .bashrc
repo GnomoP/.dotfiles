@@ -4,6 +4,9 @@
 # shellcheck disable=SC1090
 # shellcheck source=/dev/null
 
+set -e
+set -u
+
 ## If not running interactively, don't do anything
 
 case $- in
@@ -83,25 +86,9 @@ xterm*|rxvt*)
   ;;
 esac
 
-## Additional path for scripts
+## Programmable completion features. Do NOT set the '-e' flag on this pointa
 
-export PATH="$PATH:/root/bin:"
-
-## Merge ~/.Xresources
-
-[[ -f "$HOME/.Xresources" ]] && xrdb -merge "$HOME/.Xresources"
-
-##
-## Utility functions, aliases and links
-##
-
-## Print processes within this terminal
-
-if [[ -f "$HOME/.bash_aliases" ]]; then
-  source "$HOME/.bash_aliases"
-fi
-
-## Programmable completion features
+set +e
 
 if ! shopt -oq posix; then
   if [[ -f "/usr/share/bash-completion/bash_completion" ]]; then
@@ -111,14 +98,28 @@ if ! shopt -oq posix; then
   fi
 fi
 
+set -e
+
+## Additional path for scripts
+
+export PATH="$PATH:/root/bin:"
+
+## Merge ~/.Xresources
+
+[[ -f "$HOME/.Xresources" ]] && xrdb -merge "$HOME/.Xresources"
+
+## Aliases sourcing
+
+if [[ -f "$HOME/.bash_aliases" ]]; then
+  source "$HOME/.bash_aliases"
+fi
+
 ## Shortcut to GnomoP (USB stick)
 
-if [[ -d "/media/root/GnomoP" ]]; then
-  ln -sf "/media/root/GnomoP" "/root/usb"
+if [[ -d "/media/$(whoami)/GnomoP" ]]; then
+  ln -sf "/media/$(whoami)/GnomoP" "$HOME/usb"
 else
-  if [[ -s "/root/usb" ]]; then
-    rm -f "/root/usb"
-  fi
+  [[  -s "$HOME/usb" ]] && rm -f "$HOME/usb"
 fi
 
 ## Environmental variables
@@ -133,6 +134,11 @@ bind 'TAB:menu-complete'
 
 ## Custom scripts (leave in for last)
 
-/root/scripts/src/_init
+set +e
+set +u
+
+if [[ -f "$HOME/src/_init" ]]; then
+  "$HOME/src/_init"
+fi
 # vim: syntax=sh
 # vim: set ts=2 sw=2 tw=80 et :

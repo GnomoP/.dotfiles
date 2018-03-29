@@ -36,6 +36,7 @@ alias bashrc='vim ~/.bashrc'
 alias inputrc='vim ~/.inputrc'
 
 ## Refresh shell
+alias r="exec \$SHELL"
 alias refresh="exec \$SHELL"
 # vim: syntax=sh
 # vim: set ts=2 sw=2 tw=80 et :

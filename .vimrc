@@ -2,16 +2,7 @@
 set nocompatible
 
 " pathogen, bish
-execute pathogen#infect('/root/.vim/plugins/{}')
-syntax on
-filetype plugin indent on
-Helptags
-
-" display settings
-set encoding=utf-8 " encoding used for displaying file
-set ruler " show the cursor position all the time
-set showmatch " highlight matching braces
-set showmode " show insert/replace/visual mode
+execute pathogen#infect("$HOME/.vim/plugins/{}", "$HOME/.vim/vimrc.d/{}")
 
 " write settings
 set confirm " confirm :q in case of unsaved changes
@@ -36,8 +27,10 @@ set smartcase " ...unless capital letters are used
 " file type specific settings
 filetype on " enable file type detection
 filetype indent on " automatically indent code
+filetype plugin indent on " same for plugins
 
 " syntax highlighting
+syntax on
 set background=dark " dark background for console
 
 " characters for displaying non-printable characters
@@ -70,6 +63,7 @@ if has('autocmd')
         endif
 
         " don't replace Tabs with spaces when editing makefiles
+        "
         autocmd Filetype makefile setlocal noexpandtab
 
         " disable automatic code indentation when editing TeX and XML files
@@ -103,10 +97,10 @@ inoremap <F12> <Esc>:set list!<CR>a
 
 " set colorscheme when under wvim
 if $WVIM == "true"
-  colorscheme onedark
+  colorscheme wvim
 endif
 
-" set statusline and syntastic options
+" set statusline, airline and syntastic options
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -120,26 +114,30 @@ let g:syntastic_check_on_wq = 0
 nmap <silent> <Leader>le :Errors<CR>
 nmap <silent> <Leader>lc :lclose<CR>
 
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
 " shellcheck arguments
 let g:syntastic_sh_shellchecker_args = ''
 
 " some utility commands
 nmap <silent> <Leader>ze :edit $MYVIMRC<CR>
-nmap <silent> <Leader>zt :tabe $MYVIMRC<CR>
-nmap <silent> <Leader>zs :source $MYVIMRC<CR>
+nmap <silent> <Leader>zs :source $MYVIMRC<CR>:edit <CR>
+nmap <silent> <Leader>zt :tabedit $MYVIMRC<CR>
 
-nmap <silent> <Leader>te :tabedit<CR>
-nmap <silent> <Leader>tn :tabnew<CR>
+nmap <silent> <Leader>be :edit "$HOME/.bashrc"<Return>
+nmap <silent> <Leader>bt :tabedit "$HOME/.bashrc"<Return>
 
-nmap <silent> <A-Up> :wincmd k<CR>
-nmap <silent> <A-Down> :wincmd j<CR>
-nmap <silent> <A-Left> :wincmd h<CR>
-nmap <silent> <A-Right> :wincmd l<CR>
+nmap e.<Space> :edit<Space>
 
-nmap <silent> <A-Up> :wincmd k<CR>
-nmap <silent> <A-Down> :wincmd j<CR>
-nmap <silent> <A-Left> :wincmd h<CR>
-nmap <silent> <A-Right> :wincmd l<CR>
+nmap <silent> <Leader>te :tabedit<Return>
+nmap <silent> <Leader>tn :tabnew<Return>
+
+nmap <silent> <A-Up> :wincmd k<Return>
+nmap <silent> <A-Down> :wincmd j<Return>
+nmap <silent> <A-Left> :wincmd h<Return>
+nmap <silent> <A-Right> :wincmd l<Return>
 
 " Append modeline after last line in buffer.
 " Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
@@ -156,6 +154,8 @@ function! AppendModeline()
   call append(line("$"), l:modeline)
 endfunction
 
-nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
+nnoremap <silent> <Leader>ml :call AppendModeline()<Return>
+
+Helptags
 " vim: syntax=vim
 " vim: set ts=2 sw=2 tw=80 et :
