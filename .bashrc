@@ -89,12 +89,14 @@ export PATH="$PATH:/root/bin:./"
 [[ -f "/root/.Xresources" ]] && xrdb -merge '/root/.Xresources'
 
 # Utility functions and some aliases
+
+# Print processes within this terminal
 pterm () {
   if [[ -z "$@" ]]; then
-    ps x | grep -E '[0-9]+ pts/[0-9]+'
+    ps axu | egrep "[0-9]+ pts/$(fgconsole)"
   else
     for i in "$@"; do
-      ps x | grep -E "[0-9]+ pts/$i"
+      ps axu | egrep "[0-9]+ pts/$i"
     done
   fi
 }
