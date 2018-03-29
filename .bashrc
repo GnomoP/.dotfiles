@@ -138,7 +138,7 @@ set +e
 set +u
 
 if [[ -f "$HOME/src/_init" ]]; then
-  "$HOME/src/_init"
+  source "$HOME/src/_init"
 fi
 # vim: syntax=sh
 # vim: set ts=2 sw=2 tw=80 et :

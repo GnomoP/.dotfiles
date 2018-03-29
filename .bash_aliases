@@ -18,7 +18,6 @@ if [[ -x /usr/bin/dircolors ]]; then
 fi
 
 ## Directory listing
-alias l='ls -lAh'
 alias la='ls -A'
 alias ll='ls -l'
 
@@ -36,7 +35,11 @@ alias bashrc='vim ~/.bashrc'
 alias inputrc='vim ~/.inputrc'
 
 ## Refresh shell
-alias r="exec \$SHELL"
 alias refresh="exec \$SHELL"
+
+## Common commands in single characters
+alias l='ls -lAh'
+alias q='exit'
+alias r='refresh'
 # vim: syntax=sh
 # vim: set ts=2 sw=2 tw=80 et :

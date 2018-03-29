@@ -96,8 +96,9 @@ noremap <F12> :set list!<CR>
 inoremap <F12> <Esc>:set list!<CR>a
 
 " set colorscheme when under wvim
-if $WVIM == "true"
+if $WVIM
   colorscheme wvim
+  AirlineTheme onedark
 endif
 
 " set statusline, airline and syntastic options
@@ -126,10 +127,9 @@ nmap <silent> <Leader>ze :edit $MYVIMRC<CR>
 nmap <silent> <Leader>zs :source $MYVIMRC<CR>:edit <CR>
 nmap <silent> <Leader>zt :tabedit $MYVIMRC<CR>
 
-nmap <silent> <Leader>be :edit "$HOME/.bashrc"<Return>
-nmap <silent> <Leader>bt :tabedit "$HOME/.bashrc"<Return>
-
-nmap e.<Space> :edit<Space>
+nmap c.<Space> :tabclose<Space>
+nmap e.<Space> :tabedit<Space>
+nmap n.<Space> :tabnew<Space>
 
 nmap <silent> <Leader>te :tabedit<Return>
 nmap <silent> <Leader>tn :tabnew<Return>
