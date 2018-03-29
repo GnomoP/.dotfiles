@@ -93,14 +93,6 @@ endif
 noremap n nzz
 noremap N Nzz
 
-" press F4 to fix indentation in whole file; overwrites marker 'q' position
-noremap <F4> mqggVG=`qzz
-inoremap <F4> <Esc>mqggVG=`qzza
-
-" press F5 to sort selection or paragraph
-vnoremap <F5> :sort i<CR>
-nnoremap <F5> Vip:sort i<CR>
-
 " press F9 to turn the search results highlight off
 noremap <F9> :nohl<CR>
 inoremap <F9> <Esc>:nohl<CR>a
@@ -114,11 +106,46 @@ if $WVIM == "true"
   colorscheme onedark
 endif
 
+" set statusline and syntastic options
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" manage the error window
+nmap <silent> <Leader>le :Error<CR>
+nmap <silent> <Leader>lc :lclose<CR>
+
+" shellcheck arguments
+let g:syntastic_sh_shellchecker_args = ''
+
+" some utility commands
+nmap <silent> <Leader>ze :edit $MYVIMRC<CR>
+nmap <silent> <Leader>zt :tabe $MYVIMRC<CR>
+nmap <silent> <Leader>zs :source $MYVIMRC<CR>
+
+nmap <silent> <Leader>te :tabedit <C>
+nmap <silent> <Leader>tn :tabnew <CR>
+
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
+
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
+
 " Append modeline after last line in buffer.
 " Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
 " files.
 function! AppendModeline()
-  let l:modeline = printf(" vim: syntax=%s",
+  let l:modeline = printf(" vim: syntax=%s ",
         \ &syntax)
   let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
   call append(line("$"), l:modeline)

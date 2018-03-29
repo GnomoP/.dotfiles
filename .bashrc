@@ -69,8 +69,8 @@ xterm*|rxvt*)
 esac
 
 # Alias definitions.
-if [ -f ~/.bash_aliases ]; then
-  source ~/.bash_aliases
+if [ -f "/root/.bash_aliases" ]; then
+  source "/root/.bash_aliases"
 fi
 
 # Programmable completion features
@@ -93,10 +93,10 @@ export PATH="$PATH:/root/bin:./"
 # Print processes within this terminal
 pterm () {
   if [[ -z "$@" ]]; then
-    ps axu | egrep "[0-9]+ pts/$(fgconsole)"
+    ps axu | grep -E "[0-9]+ pts/$(fgconsole)"
   else
     for i in "$@"; do
-      ps axu | egrep "[0-9]+ pts/$i"
+      ps axu | grep -E "[0-9]+ pts/$i"
     done
   fi
 }
