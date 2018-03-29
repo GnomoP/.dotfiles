@@ -7,3 +7,5 @@ if [ "$BASH" ]; then
 fi
 
 mesg n || true
+# vim: syntax=sh
+# vim: set ts=2 sw=2 tw=80 et :

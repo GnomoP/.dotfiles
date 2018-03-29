@@ -14,8 +14,6 @@ set output-meta on
 # need this to enable the arrow keys.
 set enable-keypad on
 
-# see /usr/share/doc/bash/inputrc.arrows for other codes of arrow keys
-
 # do not bell on tab-completion
 # set bell-style none
 # set bell-style visible
