@@ -1,4 +1,3 @@
-# /etc/inputrc - global inputrc for libreadline
 # See readline(3readline) and `info rluserman' for more information.
 
 # Be 8 bit clean.
@@ -65,3 +64,5 @@ $endif
 # "\e[F": end-of-line
 
 $endif
+#  vim: syntax=readline
+#  vim: set ts=2 sw=2 tw=80 et :

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # enable color support for some commands
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -30,3 +32,5 @@ alias inputrc='vim ~/.inputrc'
 
 # Refresh shell
 alias refresh="exec $SHELL"
+# vim: syntax=sh
+# vim: set ts=2 sw=2 tw=80 et :
