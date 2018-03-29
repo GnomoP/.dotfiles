@@ -1,3 +1,6 @@
 xterm*eightBitInput: false
-# vim: syntax=xdefaults
-# vim: set ts=2 sw=2 tw=80 et :
+/* vim: syntax=xdefaults
+ *
+/* vim: set ts=2 sw=2 tw=80 et :
+ *
+ */
