@@ -100,43 +100,6 @@ fi
 
 set -e
 
-## Additional path for scripts
-
-export PATH="$PATH:/root/bin:"
-
-## Merge ~/.Xresources
-
-[[ -f "$HOME/.Xresources" ]] && xrdb -merge "$HOME/.Xresources"
-
-## Aliases sourcing
-
-if [[ -f "$HOME/.bash_aliases" ]]; then
-  source "$HOME/.bash_aliases"
-fi
-
-## Shortcut to GnomoP (USB stick)
-
-if [[ -d "/media/$(whoami)/GnomoP" ]]; then
-  ln -sf "/media/$(whoami)/GnomoP" "$HOME/usb"
-else
-  [[  -s "$HOME/usb" ]] && rm -f "$HOME/usb"
-fi
-
-## Environmental variables
-
-export EDITOR='/usr/bin/vim'
-export VISUAL='/usr/bin/code'
-
-## Bindings
-
-bind 'set show-all-if-ambiguous on'
-bind 'TAB:menu-complete'
-
-## Custom scripts (leave in for last)
-
-set +e
-set +u
-
 if [[ -f "$HOME/src/_init" ]]; then
   source "$HOME/src/_init"
 fi
