@@ -29,18 +29,24 @@ alias dirfiles='l | grep -v ^d | grep -v ^t | wc -l'
 alias dpush='dotfiles-push'
 alias vscode='code'
 
-## Config file
-alias aliases='vim ~/.bash_aliases'
-
+## Commonly edited config files
 alias vimrc='vim ~/.vimrc'
 alias bashrc='vim ~/.bashrc'
 alias inputrc='vim ~/.inputrc'
+alias srcinit='vim ~/.srcinit'
+alias aliases='vim ~/.bash_aliases'
+alias gitignore='vim ./.gitignore'
 
 ## Refresh shell
 alias refresh="exec \$SHELL"
 
-## Common commands in single characters
+## Commonly used commands in only one or two characters
+alias e='echo'
+alias g='git'
 alias l='ls -lAh'
+alias L='less -F'
+alias p='dotfiles-push'
+alias pf='printf'
 alias q='exit'
 alias r='refresh'
 # vim: syntax=sh

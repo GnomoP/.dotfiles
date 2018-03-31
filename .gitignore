@@ -6,6 +6,9 @@ _gitlast
 # Older mirrors
 _gitrepos
 
+# Avoid duplicate initrc files
+src/_init
+
 # Vim swap and backup files
 *.swp
 *~
