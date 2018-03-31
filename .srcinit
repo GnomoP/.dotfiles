@@ -33,7 +33,6 @@ _srcinitexc () {
     done < "$SRC/_ignore"
 
     [[ -n "$EXECUTE" && -x "$file" ]] &&\
-      echo "Sourcing '$filename' "&&\
       source "$file"
   done <   <(find "$SRC/" -follow -type f -print0)
 } && _srcinitexc
