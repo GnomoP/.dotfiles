@@ -49,6 +49,7 @@ while [[ -n "$*" ]]; do
   case "$1" in
     '-s' | '--silent')
       pull > /dev/null 2>&1
+      return
       ;;
 
     *)
