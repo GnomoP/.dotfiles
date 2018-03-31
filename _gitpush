@@ -54,7 +54,7 @@ while [[ -n "$*" ]]; do
 
     '-w' | '--write')
       [[ -n "$2" ]] &&\
-        pull "2>&1 | tee $2"
+        pull "2>&1"
       exit
       ;;
     *)
