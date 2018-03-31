@@ -65,7 +65,7 @@ while [[ -n "$*" ]]; do
       faketty () { script -qfc "$(printf "%q " "$@")"; }
       faketty "$name" > "$2" &
 
-      tail --pid "$!" -f "$2" | perl -pe "s/root/\\e[1;31m\$&\\e[0m/g"
+      tail --pid "$!" -f "$2" | perl -pe "s/$(whoami)@$(hostname)/\\e[1;31m\$&\\e[0m/g"
 
       #tail --pid "$!" -f "$2" | sed --unbuffered \
       #  -e 's/\(.*root.*\)/\o003[1;31m\1\o033[0m/'
