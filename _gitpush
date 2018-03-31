@@ -53,9 +53,11 @@ while [[ -n "$*" ]]; do
       ;;
 
     '-w' | '--write')
-      [[ -n "$2" ]] &&\
-        pull "2>&1"
-      exit
+      [[ -z "$2" ]] &&\
+        exit
+      name="$(realpath "$0")"
+      name="$(basename "$name")"
+      exec "$name" 2>&1 | tee "$2"
       ;;
     *)
       ;;
