@@ -68,7 +68,7 @@ while [[ -n "$*" ]]; do
       faketty "$name" >> "$2" &
 
       # shellcheck disable=SC2002
-      cat "$2" | col -xb | tee "$2"
+      cat "$2" | col -xb | tee "$2" -i
 
       # shellcheck disable=SC2094
       # faketty cat "$2" | col -b > "$2"
