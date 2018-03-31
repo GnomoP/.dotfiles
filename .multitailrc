@@ -1,2 +1,0 @@
-colorscheme:git_add_commit_push
-cs_re:red:root@kali-kezio \d{4}-\d{2}\d{2}\d{2}:\d{2}:\{2}
