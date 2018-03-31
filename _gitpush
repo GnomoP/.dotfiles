@@ -63,11 +63,15 @@ while [[ -n "$*" ]]; do
       name="$(basename "$name")"
 
       faketty () { script -qfc "$(printf "%q " "$@")"; }
-      faketty "$name" | tee "$2"
+      faketty "$name" | col -b | tee "$2"
+
+      # shellcheck disable=SC2094
+      # faketty cat "$2" | col -b > "$2"
 
       unset -f faketty
       unset name
       ;;
+
     *)
       ;;
   esac
