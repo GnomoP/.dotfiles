@@ -1,0 +1,45 @@
+#!/bin/bash
+
+set -e
+set -x
+
+# Export command-line optional parameters to an
+# environment variable for later use if present
+while [[ ! -z "$*" ]]; do
+  case "$1" in
+    '-e' | '--exec' )
+      arg="$(whereis -b "$2" | cut -d ' ' -f2)"
+      if [[ ! -z "$2" ]] &&\
+         [[ -f "$arg" && -x "$arg" ]]; then
+        export WVIM_EXEC="$arg"
+        echo "Using executable at $WVIM_EXEC"
+      else
+        echo "\"$(basename "$0")\": '$2' is not a valid executable"
+        exit
+      fi
+
+      shift
+      ;;
+
+    *)
+      ;;
+  esac
+shift
+done
+
+if [[ -z ${WVIM_EXEC+x} ]]; then
+  export WVIM_EXEC="/bin/bash"
+fi
+
+# Export command-line arguments to an environment
+# variable for later use in the vim.themed script
+if [[ ! -z "$*" ]]; then
+  export WVIM_ARGS="$*"
+fi
+
+# Create .config directory for termite (if it doesn't exist)
+if [[ ! -d "$HOME/.config/termite" ]]; then
+  mkdir -p "$HOME/.config/termite"
+fi
+
+WVIM="/usr/bin/vim" nohup termite -c "$HOME/.config/termite/vim" -e wvim-sh > "$HOME/.wvim.log" 2>&1 <&- &

@@ -1,12 +1,6 @@
 #!/bin/bash
 
-set -e
-set -u
-set -x
-
-# Check for wvim arguments in the environment variables
-if [[ ! -z ${WVIM+x} ]] &&\
-   [[ -f "$(realpath "$WVIM")" ]] &&\
+if [[ -n "$WVIM" ]] &&\
    [[ -x "$(realpath "$WVIM")" ]]; then
   WVIM="$(realpath "$WVIM")"
 else
@@ -15,15 +9,12 @@ fi
 
 export WVIM
 
-if [[ ! -z ${WVIM_ARGS+x} ]]; then
+if [[ -n "$WVIM_ARGS" ]]; then
   vim "$WVIM_ARGS"
   unset WVIM_ARGS
 else
   vim
 fi
 
-set +x
-
-if [[ ! -z ${WVIM_EXEC+x} ]]; then
+[[ -n "$WVIM_EXEC" ]] &&\
   exec "$WVIM_EXEC"
-fi
