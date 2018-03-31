@@ -37,7 +37,8 @@ pull () {
     local dir
     dir="$(find . -maxdepth 1 -type d | grep -vx '^.$' | sort | head -n 1)"
 
-    echo "Removing '$dir' from _gitrepos: directory count is greater than 10"
+    echo "Directory count is greater than 10"
+    echo "Removing '$dir' from _gitrepos"
     rm -rf "$dir"
   fi
 
