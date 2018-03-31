@@ -57,7 +57,7 @@ while [[ -n "$*" ]]; do
   shift
 done
 
-pull | grep -E '\w+'
+pull
   # GREP_COLOR='1;32' grep -E '\S+@\S+ \d{4}-\d{2}\d{2} \d{2}:\d{2}:\{2}'
 # vim: syntax=sh
 # vim: set ts=2 sw=2 tw=80 et :
