@@ -63,7 +63,12 @@ while [[ -n "$*" ]]; do
       name="$(basename "$name")"
 
       faketty () { script -qfc "$(printf "%q " "$@")"; }
-      faketty "$name" | col -b | tee "$2"
+
+      echo '' > "$2"
+      faketty "$name" >> "$2" &
+
+      # shellcheck disable=SC2002
+      cat "$2" | col -xb | tee "$2"
 
       # shellcheck disable=SC2094
       # faketty cat "$2" | col -b > "$2"
