@@ -8,7 +8,14 @@ pull () {
   cd "$HOME/.dotfiles"
 
   git add -A
+
+  set +e
   git commit -m "$(whoami)@$(hostname) $(date "+%F %T")"
+  if [[ "$?" -eq 1 ]]; then
+    echo "Last commit: $(git log -1 --pretty=%s)"
+    return
+  fi
+  set -e
 
   git push -u origin master
 
