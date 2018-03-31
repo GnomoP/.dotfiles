@@ -17,7 +17,7 @@ pull () {
   [[ -d "$TIMESTAMP" ]] ||\
     git clone git+ssh://git@github.com/GnomoP/.dotfiles-kali "$TIMESTAMP"
 
-  ln -sf "$TIMESTAMP" "../_gitlast"
+  ln -sf "_gitrepos/$TIMESTAMP" "../_gitlast"
   cd "$ORG_PWD" || return
 }
 
