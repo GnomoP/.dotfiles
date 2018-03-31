@@ -55,6 +55,7 @@ while [[ -n "$*" ]]; do
     '-w' | '--write')
       [[ -z "$2" ]] &&\
         exit
+
       name="$(realpath "$0")"
       name="$(basename "$name")"
 
