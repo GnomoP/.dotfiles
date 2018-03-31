@@ -69,8 +69,8 @@ while [[ -n "$*" ]]; do
       faketty "$name" > "$2" &
 
       tail --pid "$!" -f "$2" | \
-      perl -p\
--e 's/'\
+      perl -pe\
+'s/'\
 "$(whoami)\@$(hostname) "'\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}/'\
 '\e[1;31m$&\e[m'\
 '/g' -e 's/'\
