@@ -24,16 +24,22 @@ _srcinitexc () {
       grep -qE '^#' <<< "$pattern" &&\
         continue
 
-        if [[ "$file" =~ $pattern  ]]; then
-          EXECUTE=''
-        fi
+      local filename
+      filename="$(sed -E 's/^\/root\/src\///g' <<< "$file")"
+
+      if [[ "$filename" =~ $pattern  ]]; then
+        EXECUTE=''
+      fi
     done < "$SRC/_ignore"
 
     [[ -n "$EXECUTE" && -x "$file" ]] &&\
+      echo "Sourcing '$filename' "&&\
       source "$file"
-  done <   <(find "$SRC/" -maxdepth 1 -type f -print0)
+  done <   <(find "$SRC/" -follow -type f -print0)
 } && _srcinitexc
 unset -f _srcinitexc
+
+append-path "./"
 
 ## Merge ~/.Xresources
 [[ -f "$HOME/.Xresources" ]] &&\
