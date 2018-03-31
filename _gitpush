@@ -25,8 +25,11 @@ pull () {
   ln -sf "_gitrepos/$TIMESTAMP" "../_gitlast"
 
   # shellcheck disable=SC2010
-  if [[ "$(ls -l | grep '^d' | grep -cv '^t')" -gt 10 ]]; then
-    rm -rf "$(find . -maxdepth 1 -type d -printf '%T+ %p\n' | sort | head -n 1)"
+  if [[ "$(find . -maxdepth 1 -type d | grep -cvx '^.$')" -gt 10 ]]; then
+    local dir
+    dir="$(find . -maxdepth 1 -type d | grep -vx '^.$' | sort | head -n 1)"
+
+    echo "Removing '$dir' from _gitrepos: directory count is greater than 10"
   fi
 
   cd "$ORG_PWD"
