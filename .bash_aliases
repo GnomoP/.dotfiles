@@ -25,7 +25,8 @@ alias ll='ls -l'
 alias freeram='free && sync && echo 3 > /proc/sys/vm/drop_caches && free'
 alias dirfiles='l | grep -v ^d | grep -v ^t | wc -l'
 
-## Command shortnames
+## Nicknames and shortnames
+alias dpush='dotfiles-push'
 alias vscode='code'
 
 ## Config file
