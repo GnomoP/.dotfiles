@@ -26,6 +26,7 @@ alias freeram='free && sync && echo 3 > /proc/sys/vm/drop_caches && free'
 alias dirfiles='l | grep -v ^d | grep -v ^t | wc -l'
 
 ## Nicknames and shortnames
+alias wvim='wvim-term'
 alias dpush='dotfiles-push'
 alias vscode='code'
 
@@ -49,5 +50,7 @@ alias p='dotfiles-push'
 alias pf='printf'
 alias q='exit'
 alias r='refresh'
+alias v='vim'
+alias wv='wvim'
 # vim: syntax=sh
 # vim: set ts=2 sw=2 tw=80 et :

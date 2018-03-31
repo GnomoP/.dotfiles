@@ -1,7 +1,6 @@
-# vim swap files
-*.swp
+# Patterns should be bash acceptable (by '=~') Regex patterns
 
-# backups
-*~
+^_.+$
+
 #  vim: syntax=conf
 #  vim: set ts=2 sw=2 tw=80 et :

@@ -83,12 +83,12 @@ if ! shopt -oq posix; then
 fi
 
 # Complements for the '.bashrc'
-SRC_DIR="$HOME/src"
-export SRC_DIR
+SRC="$HOME/src"
+export SRC
 
-if [[ -f "$SRC_DIR/_init" ]]; then
+if [[ -f "$SRC/_init" ]]; then
   # shellcheck source=/root/src/
-  source "$SRC_DIR/_init"
+  source "$SRC/_init"
 fi
 # vim: syntax=sh
 # vim: set ts=2 sw=2 tw=80 et :
