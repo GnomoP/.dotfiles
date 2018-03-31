@@ -48,7 +48,6 @@ pull () {
 if [[ -n "$1" ]]; then
   pull > /dev/null 2>&1
 else
-  # Color the output
   pull | \
     GREP_COLOR='1;32' grep -E '\S+@\S+ \d{4}-\d{2}\d{2} \d{2}:\d{2}:\{2}'
 fi
