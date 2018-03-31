@@ -23,6 +23,7 @@ alias ll='ls -l'
 
 ## Quick and dirty one-liners
 alias freeram='free && sync && echo 3 > /proc/sys/vm/drop_caches && free'
+alias dirfiles='l | grep -v ^d | grep -v ^t | wc -l'
 
 ## Command shortnames
 alias vscode='code'
