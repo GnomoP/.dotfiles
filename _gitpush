@@ -14,7 +14,7 @@ pull () {
   cd "_gitrepos" || return
 
   TIMESTAMP="$(GIT_WORK_TREE="../" git log -1 --pretty=%s)"
-  [[ -d "$TIMESTAMP" ]] &&\
+  [[ ! -d "$TIMESTAMP" ]] &&\
     git clone git+ssh://git@github.com/GnomoP/.dotfiles-kali "$TIMESTAMP"
 
   ln -sf "$TIMESTAMP" "../_gitlast"
