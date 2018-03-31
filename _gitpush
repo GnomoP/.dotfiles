@@ -49,7 +49,8 @@ if [[ -n "$1" ]]; then
   pull > /dev/null 2>&1
 else
   pull | \
-    GREP_COLOR='1;32' grep -E '\S+@\S+ \d{4}-\d{2}\d{2} \d{2}:\d{2}:\{2}'
+    grep -E '\w'
+    # GREP_COLOR='1;32' grep -E '\S+@\S+ \d{4}-\d{2}\d{2} \d{2}:\d{2}:\{2}'
 fi
 # vim: syntax=sh
 # vim: set ts=2 sw=2 tw=80 et :
