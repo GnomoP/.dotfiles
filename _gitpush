@@ -57,7 +57,8 @@ while [[ -n "$*" ]]; do
         exit
       name="$(realpath "$0")"
       name="$(basename "$name")"
-      script -qfc "$(printf "%q " "$name")" | tee "$2"
+      faketty () { script -qfc "$(printf "%q " "$@")"; }
+      faketty "$name" | tee "$2"
       ;;
     *)
       ;;
