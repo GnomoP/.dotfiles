@@ -186,7 +186,7 @@ append-path () {
 [[ -n "$SRC_DIR" ]] &&\
   SRC_DIR="$HOME/src"
 
-append-path "$SRC_DIR/exec"
+append-path "$SRC_DIR/exec" "$HOME/bin"
 
 ## Merge ~/.Xresources
 [[ -f "$HOME/.Xresources" ]] &&\
