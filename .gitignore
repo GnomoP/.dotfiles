@@ -1,7 +1,9 @@
 .gitignore
 
 # Local mirror of the last push
-_gitlast/
+_gitlast
+# Older mirrors
+_gitrepos
 
 # Vim swap and backup files
 *.swp
