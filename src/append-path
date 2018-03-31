@@ -181,6 +181,5 @@ if [[ -v "ORG_IFS" ]]; then
   unset ORG_IFS
   export IFS
 fi
-
 # vim: syntax=sh
 # vim: set ts=2 sw=2 tw=80 et :
