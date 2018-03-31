@@ -1,0 +1,13 @@
+# hidden commands (git-pullall etc.)
+_*.sh
+
+# last pull
+.dotfiles-kali
+
+# vim swap files
+*.swp
+
+# backups
+*~
+#  vim: syntax=conf
+#  vim: set ts=2 sw=2 tw=80 et :
