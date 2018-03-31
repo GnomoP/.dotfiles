@@ -7,17 +7,17 @@ pull () {
   local ORG_PWD="$PWD"
   cd "$HOME/.dotfiles"
 
-  git add -A
+  eval "git add -A $*"
 
   set +e
-  git commit -m "$(whoami)@$(hostname) $(date "+%F %T")"
+  eval "git commit -m \"$(whoami)@$(hostname) $(date "+%F %T")\" $*"
   if [[ "$?" -eq 1 ]]; then
     echo "Last commit: $(git log -1 --pretty=%s)"
     return
   fi
   set -e
 
-  git push -u origin master
+  eval "git push -u origin master $*"
 
   if [[ ! -d "_gitrepos" ]]; then
     mkdir "_gitrepos"
@@ -29,7 +29,7 @@ pull () {
 
   TIMESTAMP="$(GIT_WORK_TREE="../" git log -1 --pretty=%s)"
   [[ -d "$TIMESTAMP" ]] ||\
-    git clone git+ssh://git@github.com/GnomoP/.dotfiles-kali "$TIMESTAMP"
+    eval "git clone git+ssh://git@github.com/GnomoP/.dotfiles-kali \"$TIMESTAMP\" $*"
   ln -sf "_gitrepos/$TIMESTAMP" "../_gitlast"
 
   # shellcheck disable=SC2010
@@ -48,10 +48,15 @@ pull () {
 while [[ -n "$*" ]]; do
   case "$1" in
     '-s' | '--silent')
-      pull > /dev/null 2>&1
+      pull "/dev/null" "2>&1"
       return
       ;;
 
+    '-w' | '--write')
+      [[ -n "$2" ]] &&\
+        pull "> $2"
+      return
+      ;;
     *)
       ;;
   esac
