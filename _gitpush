@@ -8,6 +8,9 @@ pull () {
   git commit -m "$(whoami)@$(hostname) $(date "+%F %T")" &&
   git push -u origin master
 
+  [[ -d "_gitrepos" ]] ||\
+    mkdir "_gitrepos"
+
   cd "_gitrepos" || return
 
   TIMESTAMP="$(GIT_WORK_TREE="../" git log -1 --pretty=%s)"
