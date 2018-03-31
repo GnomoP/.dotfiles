@@ -65,9 +65,8 @@ while [[ -n "$*" ]]; do
       faketty () { script -qfc "$(printf "%q " "$@")"; }
 
       faketty "$name" > "$2" &
-      # multitail -c "$2"
 
-      tail --pid="$!" -f "$2" | colortail -k "$HOME/.colortail" -n 50 -f "$2"
+      colortail -k "$HOME/.colortail" -n 50 -f "$2" | tail --pid "$!"
       #  "s/($(whoami)@$(hostname) \d{4}-\d{2}\d{2}\d{2}:\d{2}:\{2})/\e[1;31m\1\e[0m/g"
 
       # shellcheck disable=SC2094
