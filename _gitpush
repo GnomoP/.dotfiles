@@ -57,7 +57,7 @@ while [[ -n "$*" ]]; do
         exit
       name="$(realpath "$0")"
       name="$(basename "$name")"
-      exec bash -c "$name" 2>&1 | tee "$2"
+      script -qfc "$(printf "%q " "$name")" | tee "$2"
       ;;
     *)
       ;;
