@@ -65,7 +65,7 @@ while [[ -n "$*" ]]; do
       faketty () { script -qfc "$(printf "%q " "$@")"; }
       faketty "$name" > "$2" &
 
-      tail --pid "$!" -f "$2" | awk '
+      tail --pid "$!" -f "$2" | awk ' | col -xb
         /root/ {print "\003[1;31m" $0 "\033[0m"}
       '
 
