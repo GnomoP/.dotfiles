@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 pull () {
   set -e
@@ -65,7 +65,9 @@ while [[ -n "$*" ]]; do
       faketty () { script -qfc "$(printf "%q " "$@")"; }
 
       echo '' > "$2"
-      faketty "$name" | tee "$2"
+      faketty "$name" | col -b > "$2" &
+
+      tail "$2"
 
       # shellcheck disable=SC2094
       # faketty cat "$2" | col -b > "$2"
