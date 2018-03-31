@@ -45,6 +45,9 @@ pull () {
   cd "$ORG_PWD"
 }
 
+[[ -z "$*" ]] &&
+  pull && exit
+
 while [[ -n "$*" ]]; do
   case "$1" in
     '-s' | '--silent')
@@ -70,7 +73,5 @@ while [[ -n "$*" ]]; do
   esac
   shift
 done
-
-pull
 # vim: syntax=sh
 # vim: set ts=2 sw=2 tw=80 et :
