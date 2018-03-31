@@ -71,16 +71,10 @@ while [[ -n "$*" ]]; do
       tail --pid "$!" -f "$2" | \
       perl -p\
 -e 's/'\
-"$(whoami)\@$(hostname) "\
-'\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'\
-'/'\
+"$(whoami)\@$(hostname) "'\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}/'\
 '\e[1;31m$&\e[m'\
-'/g'\
-
--e 's/'\
-'\[master \d+\] '\
-"$(whoami)\@$(hostname)"\
-'/'\
+'/g' -e 's/'\
+'\[master \d+\] '"$(whoami)\@$(hostname)"'/'\
 '\e[1;34m$&\e[m'\
 '/g'
       unset -f faketty
