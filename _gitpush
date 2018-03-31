@@ -1,24 +1,27 @@
 #!/bin/bash
 
 pull () {
-  local ORG_PWD="$PWD"
-  cd "$HOME/.dotfiles"|| return
+  set -e
+  set -u
 
-  git add -A &&
-  git commit -m "$(whoami)@$(hostname) $(date "+%F %T")" &&
+  local ORG_PWD="$PWD"
+  cd "$HOME/.dotfiles"
+
+  git add -A
+  git commit -m "$(whoami)@$(hostname) $(date "+%F %T")"
   git push -u origin master
 
   [[ -d "_gitrepos" ]] ||\
     mkdir "_gitrepos"
 
-  cd "_gitrepos" || return
+  cd "_gitrepos"
 
   TIMESTAMP="$(GIT_WORK_TREE="../" git log -1 --pretty=%s)"
   [[ -d "$TIMESTAMP" ]] ||\
     git clone git+ssh://git@github.com/GnomoP/.dotfiles-kali "$TIMESTAMP"
 
   ln -sf "_gitrepos/$TIMESTAMP" "../_gitlast"
-  cd "$ORG_PWD" || return
+  cd "$ORG_PWD"
 }
 
 if [[ -n "$1" ]]; then
