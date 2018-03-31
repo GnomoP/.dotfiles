@@ -68,6 +68,7 @@ while [[ -n "$*" ]]; do
       faketty () { script -qfc "$(printf "%q " "$@")"; }
       faketty "$name" > "$2" &
 
+      set -x
       tail --pid "$!" -f "$2" | \
       perl \
 -pe 's/'\
@@ -80,6 +81,7 @@ while [[ -n "$*" ]]; do
 '/'\
 '\e[1;34m$&\e[m'\
 '/g'
+      set +x
       unset -f faketty
       unset name
       ;;
