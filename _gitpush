@@ -66,7 +66,7 @@ while [[ -n "$*" ]]; do
       faketty "$name" > "$2" &
 
       tail --pid "$!" -f "$2" | sed --unbuffered \
-      -e 's/root/\o003[1;31m\1\o033[0m/'
+        -e 's/\(root\)/\o003[1;31m\1\o033[0m/'
 
       # colortail -k "$HOME/.colortail" -n 50 -f "$2"
       #  "s/($(whoami)@$(hostname) \d{4}-\d{2}\d{2}\d{2}:\d{2}:\{2})/\e[1;31m\1\e[0m/g"
