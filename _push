@@ -3,8 +3,16 @@
 ORG_PWD="$PWD"
 cd "$HOME/.dotfiles" || return
 
-git add -A &&
-git commit -m "$(whoami)@$(hostname) $(date "+%F %T")" &&
-git push -u origin master
+pull () {
+  git add -A &&
+  git commit -m "$(whoami)@$(hostname) $(date "+%F %T")" &&
+  git push -u origin master
+}
+
+if [[ -n "$1" ]]; then
+  pull > /dev/null 2>&1
+else
+  pull
+fi
 
 cd "$ORG_PWD" || return
