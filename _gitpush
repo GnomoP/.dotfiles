@@ -11,8 +11,11 @@ pull () {
   git commit -m "$(whoami)@$(hostname) $(date "+%F %T")"
   git push -u origin master
 
-  [[ -d "_gitrepos" ]] ||\
-    mkdir "_gitrepos" && cd "$ORG_PWD" && return
+  if [[ ! -d "_gitrepos" ]]; then
+    mkdir "_gitrepos"
+    cd "$ORG_PWD"
+    return
+  fi
 
   cd "_gitrepos"
 
