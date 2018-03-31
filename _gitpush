@@ -65,7 +65,7 @@ while [[ -n "$*" ]]; do
       faketty () { script -qfc "$(printf "%q " "$@")"; }
 
       echo '' > "$2"
-      faketty "$name" | unbuffer tee "$2"
+      faketty "$name" | tee "$2"
 
       # shellcheck disable=SC2094
       # faketty cat "$2" | col -b > "$2"
