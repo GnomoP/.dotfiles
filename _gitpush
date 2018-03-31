@@ -65,7 +65,7 @@ while [[ -n "$*" ]]; do
       faketty () { script -qfc "$(printf "%q " "$@")"; }
 
       faketty "$name" > "$2" &
-      tail -f "$2" | grep --line-buffered -E \
+      tail -f "$2" | sed --unbuffered -E \
         "$(whoami)@$(hostname) \d{4}-\d{2}\d{2} \d{2}:\d{2}:\{2}"
 
       # shellcheck disable=SC2094
