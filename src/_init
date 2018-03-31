@@ -1,5 +1,5 @@
 #!/bin/bash
-# shellcheck source=/dev/null
+# shellcheck disable=SC1091
 
 ## Ensure these flags aren't set. At all
 set +x
@@ -193,8 +193,10 @@ append-path "$SRC_DIR/exec" "$HOME/bin"
   xrdb -merge "$HOME/.Xresources"
 
 ## Custom aliases
-[[ -f "$HOME/.bash_aliases" ]] &&\
+if [[ -f "$HOME/.bash_aliases" ]]; then
+  # shellcheck source=/root/.bash_aliases
   source "$HOME/.bash_aliases"
+fi
 
 ## Shortcut to GnomoP (USB stick)
 if [[ -d "/media/$(whoami)/GnomoP" ]]; then

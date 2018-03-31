@@ -30,6 +30,7 @@ pull () {
     dir="$(find . -maxdepth 1 -type d | grep -vx '^.$' | sort | head -n 1)"
 
     echo "Removing '$dir' from _gitrepos: directory count is greater than 10"
+    rm -rf "$dir"
   fi
 
   cd "$ORG_PWD"
@@ -40,3 +41,5 @@ if [[ -n "$1" ]]; then
 else
   pull
 fi
+# vim: syntax=sh
+# vim: set ts=2 sw=2 tw=80 et :
