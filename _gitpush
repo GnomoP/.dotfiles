@@ -12,7 +12,7 @@ pull () {
   git push -u origin master
 
   [[ -d "_gitrepos" ]] ||\
-    mkdir "_gitrepos"
+    mkdir "_gitrepos" && cd "$ORG_PWD" && return
 
   cd "_gitrepos"
 
