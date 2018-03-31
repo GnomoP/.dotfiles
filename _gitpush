@@ -66,7 +66,7 @@ while [[ -n "$*" ]]; do
       faketty "$name" > "$2" &
 
       tail --pid "$!" -f "$2" | awk '
-        /root/ {print "\003[1;31m" $0 "\033[0m""}
+        /root/ {print "\003[1;31m" $0 "\033[0m"}
       '
 
       # colortail -k "$HOME/.colortail" -n 50 -f "$2"
