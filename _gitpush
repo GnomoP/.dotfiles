@@ -66,25 +66,15 @@ while [[ -n "$*" ]]; do
       faketty "$name" > "$2" &
 
       # shellcheck disable=SC2026
-      tail --pid "$!" -f "$2" | perl -pe \
-        's/'\
-          "$(whoami)\@$(hostname) "\
-          '\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'\
-        '/'\
-          '\e[1;31m$&\e[0m'\
-      '/g'
-
-      #tail --pid "$!" -f "$2" | sed --unbuffered \
-      #  -e 's/\(.*root.*\)/\o003[1;31m\1\o033[0m/'
-
-      # colortail -k "$HOME/.colortail" -n 50 -f "$2"
-      #  "s/($(whoami)@$(hostname) \d{4}-\d{2}\d{2}\d{2}:\d{2}:\{2})/\e[1;31m\1\e[0m/g"
-
-      # shellcheck disable=SC2094
-      # faketty cat "$2" | col -b > "$2"
-
-      # shellcheck disable=SC2002
-      # cat "$2" | col -xb > "$2.clean"
+      tail --pid "$!" -f "$2" | \
+      perl -pe \
+'s/'\
+"$(whoami)\@$(hostname) "\
+'\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'\
+'/'\
+'\e[1;31m$&\e[0m'\
+'/g'
+      # | perl -pe \
 
       unset -f faketty
       unset name
