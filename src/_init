@@ -178,7 +178,7 @@ append-path () {
   # Beautify PATH regardless of any passed arguments
   _beautify PATH -f0 -e
 
-  # Execute _append only if any argument is passed
+  # Execute _append only if any argument has been passed
   [[ -n "$*" ]] &&
     _append "$@"
 }
