@@ -68,7 +68,7 @@ while [[ -n "$*" ]]; do
       faketty () { script -qfc "$(printf "%q " "$@")"; }
       faketty "$name" > "$2" &
 
-      tail --pid "$!" -f "$2" | perl -p "$HOME/tailcolor.pl"
+      tail --pid "$!" -f "$2" | perl -p "$HOME/.tailcolor.pl"
 
       unset -f faketty
       unset name
