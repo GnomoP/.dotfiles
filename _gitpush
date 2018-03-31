@@ -1,0 +1,25 @@
+#!/bin/bash
+
+pull () {
+  local ORG_PWD="$PWD"
+  cd "$HOME/.dotfiles"|| return
+
+  git add -A &&
+  git commit -m "$(whoami)@$(hostname) $(date "+%F %T")" &&
+  git push -u origin master
+
+  cd "_gitrepos" || return
+
+  TIMESTAMP="$(GIT_WORK_TREE="../" git log -1 --pretty=%s)"
+  [[ -d "$TIMESTAMP" ]] &&\
+    git clone git+ssh://git@github.com/GnomoP/.dotfiles-kali "$TIMESTAMP"
+
+  ln -sf "$TIMESTAMP" "../_gitlast"
+  cd "$ORG_PWD" || return
+}
+
+if [[ -n "$1" ]]; then
+  pull > /dev/null 2>&1
+else
+  pull
+fi

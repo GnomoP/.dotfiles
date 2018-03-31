@@ -1,16 +1,10 @@
-# hidden commands (git-pullall etc.)
-_*
-
-# this file itself
 .gitignore
 
-# last pull
-.dotfiles-kali
+# Local mirror of the last push
+_gitlast/
 
-# vim swap files
+# Vim swap and backup files
 *.swp
-
-# backups
 *~
 #  vim: syntax=conf
 #  vim: set ts=2 sw=2 tw=80 et :
