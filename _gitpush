@@ -65,7 +65,7 @@ while [[ -n "$*" ]]; do
       faketty () { script -qfc "$(printf "%q " "$@")"; }
 
       echo '' > "$2"
-      faketty "$name" | col -xb
+      faketty "$name" > "$2"
 
       tail "$2"
 
