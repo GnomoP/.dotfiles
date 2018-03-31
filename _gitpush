@@ -8,8 +8,7 @@ pull () {
   cd "$HOME/.dotfiles"
 
   git add -A
-  git commit -m "$(whoami)@$(hostname) $(date "+%F %T")" ||\
-    echo "Last commit: $(git log -1 --pretty=%s)" && return
+  git commit -m "$(whoami)@$(hostname) $(date "+%F %T")"
 
   git push -u origin master
 
