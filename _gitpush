@@ -49,13 +49,13 @@ while [[ -n "$*" ]]; do
   case "$1" in
     '-s' | '--silent')
       pull "/dev/null" "2>&1"
-      return
+      exit
       ;;
 
     '-w' | '--write')
       [[ -n "$2" ]] &&\
-        pull "> $2"
-      return
+        pull "| tee $2"
+      exit
       ;;
     *)
       ;;
