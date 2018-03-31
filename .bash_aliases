@@ -1,5 +1,56 @@
-[master dd6bffb] root@kali-kezio 2018-03-31 11:01:02
- 1 file changed, 1 deletion(-)
-Branch 'master' set up to track remote branch 'master' from 'origin'.
-Directory count is greater than 10
-Removing './root@kali-kezio 2018-03-31 09:19:17' from _gitrepos
+#!/bin/bash
+
+## Enable color support for some commands
+if [[ -x /usr/bin/dircolors ]]; then
+  if [[ -r "$HOME/.dircolors" ]]; then
+    eval "$(dircolors -b "$HOME"/.dircolors)"
+  else
+    eval "$(dircolors -b)"
+  fi
+
+  alias ls='ls --color=always'
+  alias dir='dir --color=always'
+  alias vdir='vdir --color=always'
+
+  alias grep='grep --color=always'
+  alias fgrep='fgrep --color=always'
+  alias egrep='egrep --color=always'
+fi
+
+## Directory listing
+alias la='ls -A'
+alias ll='ls -l'
+
+## Quick and dirty one-liners
+alias freeram='free && sync && echo 3 > /proc/sys/vm/drop_caches && free'
+alias dirfiles='l | grep -v ^d | grep -v ^t | wc -l'
+
+## Nicknames and shortnames
+alias wvim='wvim-term'
+alias dpush='dotfiles-push'
+alias vscode='code'
+
+## Commonly edited config files
+alias vimrc='vim ~/.vimrc'
+alias bashrc='vim ~/.bashrc'
+alias inputrc='vim ~/.inputrc'
+alias srcinit='vim ~/.srcinit'
+alias aliases='vim ~/.bash_aliases'
+alias gitignore='vim ./.gitignore'
+
+## Refresh shell
+alias refresh="exec \$SHELL"
+
+## Commonly used commands in only one or two characters
+alias e='echo'
+alias g='git'
+alias l='ls -lAh'
+alias L='less -F'
+alias p='dotfiles-push'
+alias pf='printf'
+alias q='exit'
+alias r='refresh'
+alias v='vim'
+alias wv='wvim'
+# vim: syntax=sh
+# vim: set ts=2 sw=2 tw=80 et :
