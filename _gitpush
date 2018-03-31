@@ -66,7 +66,7 @@ while [[ -n "$*" ]]; do
 
       faketty "$name" > "$2" &
 
-      tail --pid="$!" -f "$2" | sed --unbuffered -E \
+      tail --pid="$!" -f "$2" | sed --unbuffered -e \
         "s/$(whoami)@$(hostname) \d{4}-\d{2}\d{2} \d{2}:\d{2}:\{2}/"\
         '/\033[1;31m\1\033[m/g'
 
