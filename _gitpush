@@ -22,8 +22,13 @@ pull () {
   TIMESTAMP="$(GIT_WORK_TREE="../" git log -1 --pretty=%s)"
   [[ -d "$TIMESTAMP" ]] ||\
     git clone git+ssh://git@github.com/GnomoP/.dotfiles-kali "$TIMESTAMP"
-
   ln -sf "_gitrepos/$TIMESTAMP" "../_gitlast"
+
+  # shellcheck disable=SC2010
+  if [[ "$(ls -l | grep '^d' | grep -cv '^t')" -gt 10 ]]; then
+    rm -rf "$(find . -maxdepth 1 -type d -printf '%T+ %p\n' | sort | head -n 1)"
+  fi
+
   cd "$ORG_PWD"
 }
 
