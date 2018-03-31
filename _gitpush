@@ -74,7 +74,7 @@ perl -pe 's/'\
 "$(whoami)\@$(hostname) "'\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'\
 '/'\
 '\e[1;31m$&\e[m'\
-'/g'\
+'/g' | \
 
 perl -pe 's/'\
 '\[master \d+\] '"$(whoami)\@$(hostname)"\
