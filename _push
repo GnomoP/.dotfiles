@@ -1,5 +1,10 @@
 #!/bin/bash
 
+ORG_PWD="$PWD"
+cd "$HOME/.dotfiles" || return
+
 git add -A &&
 git commit -m "$(whoami)@$(hostname) $(date "+%F %T")" &&
 git push -u origin master
+
+cd "$ORG_PWD" || return

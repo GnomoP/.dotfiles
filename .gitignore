@@ -1,5 +1,8 @@
 # hidden commands (git-pullall etc.)
-_*.sh
+_*
+
+# this file itself
+.gitignore
 
 # last pull
 .dotfiles-kali

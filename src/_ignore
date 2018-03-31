@@ -1,9 +1,3 @@
-# hidden commands (git-pullall etc.)
-_*.sh
-
-# last pull
-.dotfiles-kali
-
 # vim swap files
 *.swp
 
