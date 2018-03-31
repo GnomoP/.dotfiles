@@ -67,7 +67,8 @@ while [[ -n "$*" ]]; do
       faketty "$name" > "$2" &
 
       tail --pid="$!" -f "$2" | sed --unbuffered \
-        -E "s/root@kali-kezio \d{4}-\d{2}\d{2} \d{2}:\d{2}:\{2}/"'/\033[1;31m\1\033[m/g'
+        -E "s/root@kali-kezio \d{4}-\d{2}\d{2} \d{2}:\d{2}:\{2}"\
+        '/\033[1;31m\1\033[m/g'
 
       # shellcheck disable=SC2094
       # faketty cat "$2" | col -b > "$2"
