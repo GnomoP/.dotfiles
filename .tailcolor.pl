@@ -5,7 +5,7 @@ LINE:
     if (m/\++/) { next; }
 
     if (m/^\[master [A-Za-z0-9]+\] $commitname\s+$/) {
-      s/\[master [A-Za-z0-9]+\]/\e[1;34m\1\e[m/g;
+      s/\[master [A-Za-z0-9]+\]/\e[1;34m\0\e[m/g;
                   s/$commitname/\e[0;31m$&\e[m/g;
       next;
     }
