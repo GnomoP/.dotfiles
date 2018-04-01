@@ -1,14 +1,28 @@
 LINE:
   while (<>) {
     my $commitname = `whoami | tr -d '\n'`.'@'.`hostname | tr -d '\n'`.' \d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}';
+    my $lastcommit = `whoami | tr -d '\n'`.'@'.`hostname | tr -d '\n'`.' \d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}';
 
-    if (m/^\++/) { next; }
+    # For a table of colors, see color-codes
 
-    if (m/^\[master [A-Za-z0-9]+\] $commitname\s+$/) {
-      s/(\[master [A-Za-z0-9]+\])/\e[1;34m\1\e[m/g;
-                  s/($commitname)/\e[1;31m\1\e[m/g;
-      next;
-    }
+    # Bash verbose output
+    s{
+      (^\++.*)
+    }{
+      \e[1;;41m
+        $1
+      \e[m
+    }x and next;
+
+    s{
+      ^
+      \[master\ \w+\]
+      \s+
+      $commitname
+      \s+
+      $
+    }{
+    }gx and next;
 
     if (m/(\d+ file(s)? changed(, )?)|(\d+ insertion(s)?\(\+\)(, )?)|(\d+ deletion(s)?\(-\)(, )?)/) {
      #s/((\d+) insertion(s)?(\(\+\))(, )?)/\e[1;32m\2\e[32m\1\e[m/g;
