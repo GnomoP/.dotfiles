@@ -10,6 +10,7 @@ LINE:
       next;
     }
 
+    # ok
     if (m/\s+\d+ file(s?) changed(, )?/) {
       s/(\d+) file(s?) changed(, )?/\'\1\' \'\2\' \'\3\' \'\4\'/g;
     }
