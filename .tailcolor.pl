@@ -9,20 +9,22 @@ LINE:
     s{
       (^\++.*)
     }{
-      \e[1;;41m
-        $1
+      \e[1;37;41m$1  # Bold white on Red BG
       \e[m
-    }x and next;
+    }ax and next;
 
     s{
-      ^
+      (^
       \[master\ \w+\]
+      \s+)
+      ($commitname
       \s+
-      $commitname
-      \s+
-      $
+      $)
     }{
-    }gx and next;
+      \e[1;34m$1  # Bold Blue on BG
+      \e[2;31m$2  # Bold Red on BG
+      \e[m
+    }ax and next;
 
     if (m/(\d+ file(s)? changed(, )?)|(\d+ insertion(s)?\(\+\)(, )?)|(\d+ deletion(s)?\(-\)(, )?)/) {
      #s/((\d+) insertion(s)?(\(\+\))(, )?)/\e[1;32m\2\e[32m\1\e[m/g;
