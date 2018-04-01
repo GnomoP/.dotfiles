@@ -24,8 +24,8 @@ LINE:
     }ax
     ) {
       s{
-        ( \[master\ [a-z0-9]{7,}\] )|
-        ( root\@kali-kezio\ \d{4}-\d{2}-\d{2}\ \d{2}:\d{2}:\d{2} )
+        ( \[master\ [a-z0-9]{7,}\] )
+        \ (root\@kali-kezio\ \d{4}-\d{2}-\d{2}\ \d{2}:\d{2}:\d{2} )
       }{\e[1;34m$1\e[1;31m$2\e[m}agx;
 
       next;
