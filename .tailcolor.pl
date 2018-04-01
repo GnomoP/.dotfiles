@@ -47,6 +47,12 @@ LINE:
       next;
     }
 
+    if ( m{ ^To (https?://.*)|(git+ssh://git\@github\.com/.*) }x )
+    {
+      s{ ( ^To\  ) ( .* ) }
+       {\e[1;37m$1\e[4;36m$2\e[m}ax
+    }
+
     if ( m{ ^\s* [a-z0-9]{7,} \.\. [a-z0-9]{7,} \ {2}
             \S+ \ -> \ \S+ \s*$ }x )
     {
