@@ -22,13 +22,11 @@ pull () {
   [[ ! -d "_gitrepos" ]] &&\
     mkdir "_gitrepos"
 
-  set -x
-
   local COMMITNAME
   COMMITNAME="$(git log -1 --pretty=%s)"
   if [[ -z "$(ls -A)" ]] ||\
      [[ ! -d "$COMMITNAME" ]] &&\
-     [[ $(( "$(date +%s)" - "$(stat _gitlast -c +Y)" )) -gt 600 ]]
+     [[ $(( "$(date +%s)" - "$(stat _gitlast -c +%Y)" )) -gt 600 ]]
   then
       cd "_gitrepos"
       git clone git+ssh://git@github.com/GnomoP/.dotfiles-kali "$COMMITNAME"
