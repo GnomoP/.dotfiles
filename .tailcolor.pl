@@ -75,3 +75,5 @@ LINE:
   } continue {
     print or die "-p destination: $!\n";
   }
+# vim: syntax=perl
+# vim: set ts=2 sw=2 tw=80 et :
