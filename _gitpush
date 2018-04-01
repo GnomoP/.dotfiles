@@ -63,6 +63,7 @@ while [[ -n "$*" ]]; do
       name="$(basename "$name")"
 
       faketty () {
+        echo 'Beginning'
         script -qfc "$(printf "%q " "$@")"
       }
 
