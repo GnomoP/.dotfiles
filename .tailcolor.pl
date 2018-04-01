@@ -8,6 +8,7 @@ LINE:
     #   elsif (m/$commitname/) {
     #          s/$commitname/\e[1;31m$&\e[m/;
     #   }
+
   } continue {
     print or die "-p destination: $!\n";
   }
