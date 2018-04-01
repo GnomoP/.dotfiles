@@ -1,6 +1,6 @@
 LINE:
   while (<>) {
-    my $commitname = `whoami | tr -d '\n'`.'@'.`hostname | tr -d '\n'`.' \d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}';
+    my $commitname = qr/`whoami | tr -d '\n'`.'@'.`hostname | tr -d '\n'`.' \d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}';/
     my $lastcommit = `whoami | tr -d '\n'`.'@'.`hostname | tr -d '\n'`.' \d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}';
 
     # For a table of colors, see color-codes
@@ -18,7 +18,7 @@ LINE:
         \[master\ [a-z0-9]{7,}\]
       \s*)|
       (\s*
-        {`whoiam`}.*
+      $commitname
       \s*)
     }{\e[1;34m$1\e[1;31m$2\e[m}agx and next;
 
