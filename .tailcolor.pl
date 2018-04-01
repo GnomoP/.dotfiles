@@ -37,17 +37,17 @@ LINE:
       next;
     }
 
-    if ( m{ ^\s+ rewrite .* \ \( \d+ % \) }x )
+    if ( m{ ^\s* rewrite .* \ \( \d+ % \) }x )
     {
       # Match the inverse of m{ ( \d{2}% ) | ( rewrite ) }ax
-      s{ (^\s+ rewrite\ ) ( .* ) ( \( \d+ % \) \s+$ ) }
+      s{ (^\s* rewrite\ ) ( .* ) ( \( \d+ % \) \s+$ ) }
        {\e[1;32m$1\e[0;32m$2\e[1;31m$3\e[m}ax;
       #{\e[1;35m$&\e[m}ax;
 
       next;
     }
 
-    if ( m{ ^To (https?://.*)|(git\+ssh://git\@github\.com/.*) }x )
+    if ( m{ ^\s* To\  (https?://.*)|(git\+ssh://git\@github\.com/.*) }x )
     {
       s{ ( ^To\  ) ( .* ) }
        {\e[1;37m$1\e[4;36m$2\e[m}ax
