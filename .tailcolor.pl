@@ -17,12 +17,11 @@ LINE:
       (\s*
         \[master\ [a-z0-9]{7,}\]
       \s*)
-      # (\s*
-      #   {`whoiam`}.*
-      # \s*)
+      (\s*
+        {`whoiam`}.*
+      \s*)
     }{
       \e[1;34m$1  # Bold Blue on BG
-      \e[2;31m$2  # Bold Red on BG
       \e[m
     }agx and next;
 
