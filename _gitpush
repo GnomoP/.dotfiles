@@ -22,6 +22,8 @@ pull () {
   [[ ! -d "_gitrepos" ]] &&\
     mkdir "_gitrepos"
 
+  set -x
+
   local COMMITNAME
   COMMITNAME="$(git log -1 --pretty=%s)"
   if [[ -z "$(ls -A)" ]] ||\
