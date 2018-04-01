@@ -23,10 +23,11 @@ LINE:
     }ax and
     s{
       ( \d+ )\ ( files?\ changed,? )
-    }{\e[1;36m$1 \e[36m$2 \e[m}agx and
+    }{<1: $1> <2: $2> <3: $3>}agx and
+   #}{\e[1;36m$1 \e[36m$2 \e[m}agx and
     s{
       ( \d+ )\ ( deletions? \( (-) \) (,\ )? )
-    }{\e[1;31m$1\e[31m$2 \e[1;31m$3\e[31m$4\e[m}agx and
+    }{\e[1;31m$1 \e[31m$2 \e[1;31m$3\e[31m$4\e[m}agx and
     s{
       ( \d+ )\ ( insertions? \( (\+) \) (,\ )? )
     }{\e[1;32m$1\e[32m$2 \e[1;32m$3\e[32m$4\e[m}agx and next;
