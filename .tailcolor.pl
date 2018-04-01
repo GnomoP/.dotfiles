@@ -10,6 +10,10 @@ LINE:
       next;
     }
 
+    if (m/\d+ file(s)? changed(, )?/) {
+      s/(\d+) file(s?) changed(, )?/\'\1\' \'\2\' \'\3\' \'\4\'/g;
+    }
+
     if (m/((\d+) file(s)? changed(, )?)|(\d+ insertion(s)?\(\+\)(, )?)|(\d+ deletion(s)?\(-\)(, )?)/) {
       print "Matchd, bish\n";
       s/((\d+) insertions?\(\+\)(, )?)/\e[32m\1\2\e[m/g; # 32m
