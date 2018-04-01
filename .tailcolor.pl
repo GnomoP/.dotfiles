@@ -11,9 +11,9 @@ LINE:
     }
 
     if (m/(\d+ file(s)? changed(, )?)|(\d+ insertion(s)?\(\+\)(, )?)|(\d+ deletion(s)?\(-\)(, )?)/) {
-      s/(\d+ insertion(s)?\(\+\)(, )?)/\e[32m\1\e[m/g;
-        s/(\d+ deletion(s)?\(-\)(, )?)/\e[31m\1\e[m/g;
-         s/(\d+ file(s)? changed(, )?)/\e[36m\1\e[m/g;
+      s/((\d+) insertion(s)?(\(\+\))(, )?)/\e[1;32m\2\e[32m\1\e[m/g;
+        s/((\d+) deletion(s)?(\(-\))(, )?)/\e[1;31m\2\e[31m\1\e[m/g;
+         s/((\d+) file(s)? changed(, )?)/\e[36m\1\e[m/g;
       next;
     }
 
