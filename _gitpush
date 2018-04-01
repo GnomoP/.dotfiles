@@ -23,7 +23,7 @@ pull () {
   [[ ! -d "_gitrepos" ]] &&\
     mkdir "_gitrepos"
 
-  [[ $(( "$(date +%s)" - $(git log -1 --pretty=%ct))) -le 600 ]] &&\
+  [[ $(( "$(date +%s)" - "$(git log -1 --pretty=%ct)")) -le 600 ]] &&\
     return
 
   cd "_gitrepos"
