@@ -59,21 +59,26 @@ while [[ -n "$1" ]]; do
       exit
       ;;
 
+    '-t' | '--tee')
+      echo $PATH
+      ;;
+
     '-w' | '--write')
       name="$(realpath "$0")"
       name="$(basename "$name")"
 
       faketty () {
         echo
-        script -qfc "$(printf "%q " "$@")" "/tmp/_gitlast.log"
+        script -qfc "$(printf "%q " "$@")" "/tmp/$$_gitlast.log"
       }
 
-      faketty "$name" > "/tmp/_dotfiles_push" &
-      tail --pid "$!" -f "/tmp/_dotfiles_push" | \
+      faketty "$name" > "/tmp/$$_dotfiles_push" &
+      tail --pid "$!" -f "/tmp/$$_dotfiles_push" | \
         perl -p "$HOME/.tailcolor.pl"
 
-      cat "/tmp/_gitlast.log" > "$HOME/.dotfiles/_gitlast.log" 2>&1
-      rm "/tmp/_gitlast.log" >> "$HOME/.dotfiles/_gitlast.log" 2>&1
+      cat "/tmp/$$_gitlast.log" > "$HOME/.dotfiles/_gitlast.log" 2>&1
+      rm "/tmp/$$_gitlast.log"
+      rm "/tmp/$$_dotfiles_push"
 
       unset -f faketty
       unset name
