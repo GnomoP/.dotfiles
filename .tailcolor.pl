@@ -20,10 +20,7 @@ LINE:
       (\s*
         {`whoiam`}.*
       \s*)
-    }{
-      \e[1;34m$1
-      \e[m
-    }agx and next;
+    }{\e[1;34m$1\e[m}agx and next;
 
     if (m/(\d+ file(s)? changed(, )?)|(\d+ insertion(s)?\(\+\)(, )?)|(\d+ deletion(s)?\(-\)(, )?)/) {
      #s/((\d+) insertion(s)?(\(\+\))(, )?)/\e[1;32m\2\e[32m\1\e[m/g;
