@@ -25,13 +25,14 @@ LINE:
                  ( \d+\ deletions?\(-\) )|
                  ( \d+\ insertions?\(\+\) ) \s*$ }ax )
     {
+
       s{ ( \d+ )\ ( files?\ changed,? ) }
-       {\e[1;36m$1 \e[0;36m$2 \e[m}agx;
+       {\e[1;36m$1 \e[0;36m$2\e[m}agx;
 
       s{ ( \d+ )\ ( deletions? \( ) (-) ( \) ,? ) }
        {\e[1;31m$1 \e[0;31m$2\e[1;31m$3\e[0;31m$4\e[m}agx;
 
-      s{( \d+ )\ ( insertions? \( ) (\+) ( \),? ) }
+      s{ ( \d+ )\ ( insertions? \( ) (\+) ( \),? ) }
        {\e[1;32m$1 \e[0;32m$2\e[1;32m$3\e[0;32m$4\e[m}agx;
 
       next;
@@ -47,10 +48,10 @@ LINE:
       next;
     }
 
-    if ( m{ ^\s* To\  (https?://.*)|(git\+ssh://git\@github\.com/.*) }x )
+    if ( m{ ^\s* To\  (https?://)|(git\+ssh) }x )
     {
-      s{ ( ^To\  ) ( .* ) }
-       {\e[1;37m$1\e[4;36m$2\e[m}ax
+      s{ ( ^\s* To\  ) ( .*$ ) }
+       {\e[1;37m$1\e[4;36m$2\e[m}ax;
     }
 
     if ( m{ ^\s* [a-z0-9]{7,} \.\. [a-z0-9]{7,} \ {2}
