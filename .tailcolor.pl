@@ -11,6 +11,7 @@ LINE:
     }
 
     if (m/((\d+) file(s)? changed(, )?)|(\d+ insertion(s)?\(\+\)(, )?)|(\d+ deletion(s)?\(-\)(, )?)/) {
+      print "Matchd, bish\n";
       s/((\d+) insertions?\(\+\)(, )?)/\e[32m\1\2\e[m/g; # 32m
         s/((\d+) deletions?\(-\)(, )?)/\e[31m\1\2\e[m/g; # 31m
          s/((\d+) files? changed(, )?)/<g1>\1<\/g1><g2>\2<\/g2>/g; # 36m
