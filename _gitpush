@@ -64,7 +64,7 @@ while [[ -n "$1" ]]; do
       name="$(basename "$name")"
 
       faketty () {
-        echo
+        printf "\n"
         script -qfc "$(printf "%q " "$@")" "/tmp/$$_gitlast.log"
       }
 
