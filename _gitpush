@@ -59,10 +59,6 @@ while [[ -n "$1" ]]; do
       exit
       ;;
 
-    '-t' | '--tee')
-      echo $PATH
-      ;;
-
     '-w' | '--write')
       name="$(realpath "$0")"
       name="$(basename "$name")"

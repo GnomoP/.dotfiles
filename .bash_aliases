@@ -39,7 +39,7 @@ alias aliases='vim ~/.bash_aliases'
 alias gitignore='vim ./.gitignore'
 
 ## Refresh shell
-alias refresh="exec \$SHELL"
+alias refresh="REFRESH_SHELL='true' exec \$SHELL"
 
 ## Commonly used commands in only one or two characters
 alias e='echo'

@@ -3,7 +3,6 @@
 # shellcheck source=/dev/null
 
 ## Ensure these flags aren't set. At all
-set +x
 set +u
 set +e
 
@@ -27,15 +26,20 @@ _srcinitexc () {
       local filename
       filename="$(sed -E 's/^\/root\/src\///g' <<< "$file")"
 
-      if [[ "$filename" =~ $pattern  ]]; then
+      if [[ "$(perl "$SRC/_match.pl" "$pattern" "$filename")" -eq 1 ]]; then
+        [[ -n "$REFRESH_SHELL" ]] && echo "Ignoring '$file'"
         EXECUTE=''
       fi
     done < "$SRC/_ignore"
 
-    [[ -n "$EXECUTE" && -x "$file" ]] &&\
-      # echo "Sourcing '$file'" &&\
-      source "$file"
-  done <   <(find "$SRC/" -follow -type f -print0)
+    if [[ -n "$EXECUTE" && -f "$file" ]]; then
+      [[ -n "$REFRESH_SHELL" ]] &&\
+        echo "Sourcing '$file'"
+
+      source "$file" ||\
+        echo "Failed to source '$file'"
+    fi
+  done <   <(find "$SRC/exec/" -follow -type f -print0)
 } && _srcinitexc
 unset -f _srcinitexc
 

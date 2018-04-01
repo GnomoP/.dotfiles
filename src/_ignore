@@ -1,11 +1,13 @@
-# Patterns should be bash acceptable (by '=~') Regex patterns
-# Above them are their .gitignore format counterparts
+# Patterns should be valid perl regular expressions for the /pattern/ syntax
 
 # _*
-^_.+$
+^_
 
 # json/
-^json/.+$
+^json/
+
+# *.swp
+.swp$
 
 #  vim: syntax=conf
 #  vim: set ts=2 sw=2 tw=80 et :
