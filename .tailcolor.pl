@@ -1,6 +1,6 @@
 LINE:
   while (<>) {
-    my $name = `whoami | tr -d '\n'`.'@'.`hostname | tr -d '\n'`;
+    my $name = `whoami | tr -d '\n'`.'\@'.`hostname | tr -d '\n'`;
 
     # For a table of colors, see color-codes
 
