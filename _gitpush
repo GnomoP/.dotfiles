@@ -10,6 +10,9 @@ pull () {
   local ORG_PWD="$PWD"
   cd "$HOME/.dotfiles"
 
+  local TIMESTAMP
+  TIMESTAMP="$(git log -1 --pretty=%ct)"
+
   git add -A
 
   set +e
@@ -22,15 +25,18 @@ pull () {
   [[ ! -d "_gitrepos" ]] &&\
     mkdir "_gitrepos"
 
-  [[ $(( "$(date +%s)" - "$(git log -1 --pretty=%ct)")) -le 600 ]] &&\
+  local COMMITNAME
+  COMMITNAME="$(git log -1 --pretty=%s)"
+  if [[ ! -d "$COMMITNAME" ]] &&\
+     [[ $(( "$(date +%s)" - "$TIMESTAMP" )) -gt 600 ]]; then
+
+    cd "_gitrepos"
+    git clone git+ssh://git@github.com/GnomoP/.dotfiles-kali "$COMMITNAME"
+  else
     return
+  fi
 
-  cd "_gitrepos"
-
-  TIMESTAMP="$(GIT_WORK_TREE="../" git log -1 --pretty=%s)"
-  [[ -d "$TIMESTAMP" ]] ||\
-    git clone git+ssh://git@github.com/GnomoP/.dotfiles-kali "$TIMESTAMP"
-  ln -sf "_gitrepos/$TIMESTAMP" "../_gitlast"
+  ln -sf "_gitrepos/$COMMITNAME" "../_gitlast"
 
   # shellcheck disable=SC2010
   if [[ "$(find . -maxdepth 1 -type d | grep -cvx '^.$')" -gt 10 ]]; then
