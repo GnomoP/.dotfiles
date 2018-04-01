@@ -54,9 +54,9 @@ LINE:
     }
 
     if (m/^\s+[A-Za-z0-9]+\.\.[A-Za-z0-9]+\s+master -> master/) {
-      s/([A-Za-z0-9]+\.\.[A-Za-z0-9]+)/\e[1;33m\1\e[m/g;
-                            s/(master)/\e[0;34m\1\e[m/g;
-                                s/(->)/\e[1;32m\1\e[m/g;
+      s/([A-Za-z0-9]+\.\.[A-Za-z0-9]+)/\e[1;33m$1\e[m/g;
+                            s/(master)/\e[0;34m$1\e[m/g;
+                                s/(->)/\e[1;32m$1\e[m/g;
       next;
     }
 
