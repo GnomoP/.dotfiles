@@ -11,18 +11,30 @@ LINE:
     }agx and next;
 
     # TODO get actual 'whoami' and 'hostname' outputs
-    s{
+    if
+    (
+    m{
       ^\s*
       ( \[master\ [a-z0-9]{7,}\] )|
       ( root\@kali-kezio\ \d{4}-\d{2}-\d{2}\ \d{2}:\d{2}:\d{2} )
       \s*$
-    }{\e[1;34m$1\e[1;31m$2\e[m}agx and next;
+    }ax
+    ) {
+      s{
+        ( \[master\ [a-z0-9]{7,}\] )|
+        ( root\@kali-kezio\ \d{4}-\d{2}-\d{2}\ \d{2}:\d{2}:\d{2} )
+      }{\e[1;34m$1\e[1;31m$2\e[m}agx
 
-    if (m{
+      next;
+    }
+
+    if (
+    m{
       ( \d+\ files?\ changed )|
       ( \d+\ deletions?\(-\) )|
       ( \d+\ insertions?\(\+\) )
-    }ax) {
+    }ax
+    ) {
       s{
         ( \d+ )\ ( files?\ changed,? )
       }{\e[1;36m$1 \e[0;36m$2 \e[m}agx;
