@@ -12,7 +12,7 @@ LINE:
 
     if (m/(\d+ file(s)? changed(, )?)|(\d+ insertion(s)?\(\+\)(, )?)|(\d+ deletion(s)?\(-\)(, )?)/) {
      #s/((\d+) insertion(s)?(\(\+\))(, )?)/\e[1;32m\2\e[32m\1\e[m/g;
-      s/((\d+) insertion(s)?(\(\+\))(, )?)/\e[4;32m\2\e[0;32m<\3><\4><\5><\6>/g;
+      s/((\d+) insertion(s)?(\(\+\))(, )?)/\e[4;32m\2\e[0;32m insertion\3\e[1;32m]\4\e[m\5\6/g;
       #
       ##
       ##
