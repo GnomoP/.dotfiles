@@ -25,7 +25,7 @@ pull () {
   local COMMITNAME
   COMMITNAME="$(git log -1 --pretty=%s)"
   if [[ -z "$(ls -A)" ]] ||\
-     [[ ! -d "$COMMITNAME" ]] ||\
+     [[ ! -d "$COMMITNAME" ]] &&\
      [[ $(( "$(date +%s)" - "$(stat _gitlast -c +Y)" )) -gt 600 ]]
   then
       cd "_gitrepos"
