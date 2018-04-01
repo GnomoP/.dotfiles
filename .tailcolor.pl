@@ -10,9 +10,10 @@ LINE:
       \e[m
     }agx and next;
 
+    # TODO get actual 'whoami' and 'hostname' outputs
     s{
       ( \[master\ [a-z0-9]{7,}\] )|
-      ( root\@kali-kezio\ \d{4}-\d{2}-\d{2}\ \d{2}:\d{2}:\d{2} ) # TODO get actual 'whoami' and 'hostname' outputs
+      ( root\@kali-kezio\ \d{4}-\d{2}-\d{2}\ \d{2}:\d{2}:\d{2} )
     }{\e[1;34m$1\e[1;31m$2\e[m}agx and next;
 
     m{
@@ -28,7 +29,7 @@ LINE:
     }{\e[1;31m$1\e[31m$2 \e[1;31m$3\e[31m$4\e[m}agx and
     s{
       ( \d+ )\ ( insertions? \( (\+) \) (,\ )? )
-    }{\e[1;32m$1\e[32m$2 \e[1;32m$3\e[32m$4\e[m}agx and
+    }{\e[1;32m$1\e[32m$2 \e[1;32m$3\e[32m$4\e[m}agx and next;
 
     if (m/^\s+[A-Za-z0-9]+\.\.[A-Za-z0-9]+\s+master -> master/) {
       s/([A-Za-z0-9]+\.\.[A-Za-z0-9]+)/\e[1;33m\1\e[m/g;
