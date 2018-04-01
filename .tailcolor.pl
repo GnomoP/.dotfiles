@@ -15,7 +15,7 @@ LINE:
 
     s{
       (^
-      \[master\ \w+\]
+      \[master\ [A-Za-z0-9]+\]
       \s+)
       ($commitname
       \s+
