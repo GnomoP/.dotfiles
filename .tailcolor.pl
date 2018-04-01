@@ -21,7 +21,7 @@ LINE:
         {`whoiam`}.*
       \s*)
     }{
-      \e[1;34m$1  # Bold Blue on BG
+      \e[1;34m$1
       \e[m
     }agx and next;
 
