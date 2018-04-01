@@ -25,7 +25,7 @@ LINE:
       ( \d+ )\ ( files?\ changed,? )
     }{\e[1;36m$1 \e[0;36m$2 \e[m}agx and
     s{
-      ( \d+ )\ ( deletions? \( (-) \) (,\ )? )
+      ( \d+ )\ ( deletions? \( ) (-) ( \) (,\ )? )
     }{\e[1;31m$1 \e[0;31m$2 \e[1;31m$3 \e[0;31m$4\e[m}agx and
     s{
       ( \d+ )\ ( insertions? \( (\+) \) (,\ )? )
