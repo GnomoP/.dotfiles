@@ -10,7 +10,7 @@ LINE:
       next;
     }
 
-    if (m/\d+ file(s)? changed(, )?/) {
+    if (m/\d+ file(s?) changed(, )?/) {
       print "Matchd, bish\n";
       s/(\d+) file(s?) changed(, )?/\'\1\' \'\2\' \'\3\' \'\4\'/g;
     }
