@@ -10,9 +10,6 @@ pull () {
   local ORG_PWD="$PWD"
   cd "$HOME/.dotfiles"
 
-  local TIMESTAMP
-  TIMESTAMP="$(git log -1 --pretty=%ct)"
-
   git add -A
 
   set +e
@@ -27,11 +24,12 @@ pull () {
 
   local COMMITNAME
   COMMITNAME="$(git log -1 --pretty=%s)"
-  if [[ ! -d "$COMMITNAME" ]] &&\
-     [[ $(( "$(date +%s)" - "$TIMESTAMP" )) -gt 600 ]]; then
-
-    cd "_gitrepos"
-    git clone git+ssh://git@github.com/GnomoP/.dotfiles-kali "$COMMITNAME"
+  if [[ -z "$(ls -A)" ]] ||\
+     [[ ! -d "$COMMITNAME" ]] ||\
+     [[ $(( "$(date +%s)" - "$(stat _gitlast -c +Y)" )) -gt 600 ]]
+  then
+      cd "_gitrepos"
+      git clone git+ssh://git@github.com/GnomoP/.dotfiles-kali "$COMMITNAME"
   else
     return
   fi
