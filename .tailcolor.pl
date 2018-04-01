@@ -18,7 +18,7 @@ LINE:
         \[master\ [a-z0-9]{7,}\]
       \s*)
       (\s*
-        $commitname
+        {`whoiam`}.*
       \s*)
     }{
       \e[1;34m$1  # Bold Blue on BG
