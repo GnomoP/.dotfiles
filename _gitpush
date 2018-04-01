@@ -65,13 +65,15 @@ while [[ -n "$1" ]]; do
 
       faketty () {
         echo
-        script -qfc "$(printf "%q " "$@")"
-        rm -f typescript > /dev/null 2>&1
+        script -qfc "$(printf "%q " "$@")" "/tmp/$$_gitlast.log"
       }
 
       faketty "$name" > "/tmp/$$_dotfiles_push" &
       tail --pid "$!" -f "/tmp/$$_dotfiles_push" | \
         perl -p "$HOME/.tailcolor.pl"
+
+      cat "/tmp/$$_gitlast.log" > "$HOME/.dotfiles/_gitlast.log" 2>&1
+      rm "/tmp/$$_gitlast.log" >> "$HOME/.dotfiles/_gitlast.log" 2>&1
 
       unset -f faketty
       unset name
