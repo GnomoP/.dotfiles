@@ -1,4 +1,4 @@
-require 5.20
+require 5.20;
 
 LINE:
   while (<>) {
