@@ -17,7 +17,7 @@ LINE:
 
     if (m/(\d+ file(s)? changed(, )?)|(\d+ insertion(s)?\(\+\)(, )?)|(\d+ deletion(s)?\(-\)(, )?)/) {
       s/\d+ insertion(s)?\(\+\)(, )?/\e[32m$&\e[m/g;
-         s/\d+ deletion(s)?\(-\)(, )?/e[31m$&\e[m/g;
+        s/\d+ deletion(s)?\(-\)(, )?/\e[31m$&\e[m/g;
          s/\d+ file(s)? changed(, )?/\e[36m$&\e[m/g;
     }
 
