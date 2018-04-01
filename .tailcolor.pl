@@ -37,6 +37,16 @@ LINE:
       next;
     }
 
+    if ( m{ ^\s+ rewrite .* \ \( \d+ % \) }x )
+    {
+      # Match the inverse of m{ ( \d{2}% ) | ( rewrite ) }ax
+      s{ (^\s+ rewrite\ ) ( .* ) ( \( \d+ % \) \s+$ ) }
+       {\e[1;32m$1\e[0;32m$2\e[1;31m$3\e[m}ax;
+      #{\e[1;35m$&\e[m}ax;
+
+      next;
+    }
+
     if ( m{ ^\s* [a-z0-9]{7,} \.\. [a-z0-9]{7,} \ {2}
             \S+ \ -> \ \S+ \s*$ }x )
     {

@@ -49,10 +49,10 @@ pull () {
   cd "$ORG_PWD"
 }
 
-[[ -z "$*" ]] &&
+[[ -z "$1" ]] &&
   pull && exit
 
-while [[ -n "$*" ]]; do
+while [[ -n "$1" ]]; do
   case "$1" in
     '-s' | '--silent')
       pull "/dev/null" "2>&1"

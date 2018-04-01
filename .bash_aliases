@@ -44,9 +44,12 @@ alias refresh="exec \$SHELL"
 ## Commonly used commands in only one or two characters
 alias e='echo'
 alias g='git'
+alias gc='git clone'
+alias gl='git ls-tree --full-tree'
+alias gp='git pull'
 alias l='ls -lAh'
 alias L='less -F'
-alias p='dotfiles-push'
+alias p='dotfiles-push -w'
 alias pf='printf'
 alias q='exit'
 alias r='refresh'
