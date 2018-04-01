@@ -23,13 +23,13 @@ LINE:
     }ax and
     s{
       ( \d+ )\ ( files?\ changed,? )
-    }{\e[1;36m$1 \e[0;36m$2 \e[m}agx and
+    }{\e[1;36m$1 \e[0;36m$2 \e[m}agx or
     s{
-      ( \d+ )\ ( deletions? \( ) (-) ( \) (,\ )? )
-    }{\e[1;31m$1 \e[0;31m$2 \e[1;31m$3 \e[0;31m$4\e[m}agx and
+      ( \d+ )\ ( deletions? \( ) (-) ( \) ,? )
+    }{\e[1;31m$1 \e[0;31m$2 \e[1;31m$3 \e[0;31m$4\e[m}agx or
     s{
       ( \d+ )\ ( insertions? \( (\+) \) (,\ )? )
-    }{\e[1;32m$1 \e[0;32m$2 \e[1;32m$3 \e[0;32m$4\e[m}agx and next;
+    }{\e[1;32m$1 \e[0;32m$2 \e[1;32m$3 \e[0;32m$4\e[m}agx or next;
 
     if (m/^\s+[A-Za-z0-9]+\.\.[A-Za-z0-9]+\s+master -> master/) {
       s/([A-Za-z0-9]+\.\.[A-Za-z0-9]+)/\e[1;33m\1\e[m/g;
