@@ -13,19 +13,6 @@ LINE:
       \e[m
     }ax and next;
 
-    s{
-      (^\s*
-        \[master\ [A-Za-z0-9]{7,}\]
-      \s*)
-      (\s*
-        $commitname
-      \s*$)
-    }{
-      \e[1;34m$1  # Bold Blue on BG
-      \e[2;31m$2  # Bold Red on BG
-      \e[m
-    }ax and next;
-
     if (m/(\d+ file(s)? changed(, )?)|(\d+ insertion(s)?\(\+\)(, )?)|(\d+ deletion(s)?\(-\)(, )?)/) {
      #s/((\d+) insertion(s)?(\(\+\))(, )?)/\e[1;32m\2\e[32m\1\e[m/g;
       s/((\d+) insertion(s)?\((\+)\)(, )?)/\e[1;32m\2\e[0;32m insertion\3\(\e[4;32m\4\e[0;32m\)\5\e[m\6/g;
