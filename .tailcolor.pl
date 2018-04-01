@@ -11,25 +11,24 @@ LINE:
     }agx and next;
 
     s{
-      (
-        \[master\ [a-z0-9]{7,}\]
-      )|
-      (
-      # TODO get actual 'whoami' and 'hostname' outputs
-      root\@kali-kezio\s\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}
-      )
+      ( \[master\ [a-z0-9]{7,}\] )|
+      ( root\@kali-kezio\ \d{4}-\d{2}-\d{2}\ \d{2}:\d{2}:\d{2} ) # TODO get actual 'whoami' and 'hostname' outputs
     }{\e[1;34m$1\e[1;31m$2\e[m}agx and next;
 
-    if (m/(\d+ file(s)? changed(, )?)|(\d+ insertion(s)?\(\+\)(, )?)|(\d+ deletion(s)?\(-\)(, )?)/) {
-     #s/((\d+) insertion(s)?(\(\+\))(, )?)/\e[1;32m\2\e[32m\1\e[m/g;
-      s/((\d+) insertion(s)?\((\+)\)(, )?)/\e[1;32m\2\e[0;32m insertion\3\(\e[4;32m\4\e[0;32m\)\5\e[m\6/g;
-      #
-      ##
-      ##
-        s/((\d+) deletion(s)?(\(-\))(, )?)/\e[1;31m\2\e[31m\1\e[m/g;
-         s/((\d+) file(s)? changed(, )?)/\e[36m\1\e[m/g;
-      next;
-    }
+    m{
+      ( \d+\ files?\ changed )|
+      ( \d+\ deletions?\(-\) )|
+      ( \d+\ insertions?\(\+\) )
+    }ax and
+    s{
+      ( \d+ )\ ( files?\ changed(, )? )
+    }{\e[1;36m$1\e[36m$2$3\e[m}agx and
+    s{
+      ( \d+ )\ ( deletions? \( (-) \) (,\ )? )
+    }{\e[1;31m$1\e[31m$2 \e[1;31m$3\e[31m$4\e[m}agx and
+    s{
+      ( \d+ )\ ( insertions? \( (\+) \) (,\ )? )
+    }{\e[1;32m$1\e[32m$2 \e[1;32m$3\e[32m$4\e[m}agx and
 
     if (m/^\s+[A-Za-z0-9]+\.\.[A-Za-z0-9]+\s+master -> master/) {
       s/([A-Za-z0-9]+\.\.[A-Za-z0-9]+)/\e[1;33m\1\e[m/g;
