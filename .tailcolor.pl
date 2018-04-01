@@ -38,6 +38,7 @@ LINE:
       next;
     }
 
+   #
    #if (m/('?master'?)|('?origin'?)/) {
    #  s/('?master'?)/\e[1;34m\1\e[m/g;
    #  s/('?origin'?)/\e[1;34m\1\e[m/g;
