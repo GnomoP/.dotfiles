@@ -20,11 +20,11 @@ pull () {
 
   eval "git push -u origin master $*"
 
-  if [[ ! -d "_gitrepos" ]]; then
+  [[ ! -d "_gitrepos" ]] &&\
     mkdir "_gitrepos"
-    cd "$ORG_PWD"
+
+  [[ $(( "$(date +%s)" - $(git log -1 --pretty=%ct))) -le 600 ]] &&\
     return
-  fi
 
   cd "_gitrepos"
 
