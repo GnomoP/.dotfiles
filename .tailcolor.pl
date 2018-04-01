@@ -15,8 +15,15 @@ LINE:
         next;
     }
 
-    if (m/'?master'?/) {
+    #if (m/a/) {
+      #
+      #
+      #
+    #}
+
+    if (m/('?master'?)|('?origin'?)/) {
         s/'?master'?/\e[1;34m$&\e[m/g;
+        s/'?origin'?/\e[1;34m$&\e[m/g;
     }
 
     if (m/$commitname/) {
