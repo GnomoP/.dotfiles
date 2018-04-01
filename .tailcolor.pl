@@ -14,12 +14,12 @@ LINE:
     }ax and next;
 
     s{
-      (^
-      \[master\s[A-Za-z0-9]{7,}\]
-      \s+)
-      ($commitname
-      \s+
-      $)
+      (^\s*
+        \[master\s*[A-Za-z0-9]{7,}\]
+      \s*)
+      (\s*
+        $commitname
+      \s*$)
     }{
       \e[1;34m$1  # Bold Blue on BG
       \e[2;31m$2  # Bold Red on BG
