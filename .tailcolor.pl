@@ -6,8 +6,14 @@ LINE:
 
     if (m/^\[master [A-Za-z0-9]+\] $commitname\s+$/) {
       s/(\[master [A-Za-z0-9]+\])/\e[1;34m\1\e[m/g;
-                  s/($commitname)/\e[0;31m\1\e[m/g;
+                  s/($commitname)/\e[1;31m\1\e[m/g;
       next;
+    }
+
+    if (m/(\d+ file(s)? changed(, )?)|(\d+ insertion(s)?\(\+\)(, )?)|(\d+ deletion(s)?\(-\)(, )?)/) {
+      s/(\d+ insertion(s)?\(\+\)(, )?)/\e[32m\1\2\e[m/g;
+        s/(\d+ deletion(s)?\(-\)(, )?)/\e[31m\1\2e[m/g;
+         s/(\d+ file(s)? changed(, )?)/\e[36m\1\2\e[m/g;
     }
 
     if (m/^\s+[A-Za-z0-9]+\.\.[A-Za-z0-9]+\s+master -> master/) {
@@ -15,12 +21,6 @@ LINE:
                             s/(master)/\e[0;34m\1\e[m/g;
                                 s/(->)/\e[1;32m\1\e[m/g;
       next;
-    }
-
-    if (m/(\d+ file(s)? changed(, )?)|(\d+ insertion(s)?\(\+\)(, )?)|(\d+ deletion(s)?\(-\)(, )?)/) {
-      s/(\d+ insertion(s)?\(\+\)(, )?)/\e[32m\1\e[m/g;
-        s/(\d+ deletion(s)?\(-\)(, )?)/\e[31m\1\e[m/g;
-         s/(\d+ file(s)? changed(, )?)/\e[36m\1\e[m/g;
     }
 
     if (m/('?master'?)|('?origin'?)/) {
