@@ -21,7 +21,7 @@ LINE:
         $commitname
       \s*$)
     }{
-      \e[1;34m$1  # Bold Blue on BG
+      \e[1;34m\1  # Bold Blue on BG
       \e[2;31m$2  # Bold Red on BG
       \e[m
     }ax and next;
