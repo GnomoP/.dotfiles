@@ -11,7 +11,7 @@ LINE:
     }{
       \e[1;37;41m$1  # Bold white on Red BG
       \e[m
-    }ax and next;
+    }agx and next;
 
     s{
       (^\s*
@@ -24,7 +24,7 @@ LINE:
       \e[1;34m$1  # Bold Blue on BG
       \e[2;31m$2  # Bold Red on BG
       \e[m
-    }ax and next;
+    }agx and next;
 
     if (m/(\d+ file(s)? changed(, )?)|(\d+ insertion(s)?\(\+\)(, )?)|(\d+ deletion(s)?\(-\)(, )?)/) {
      #s/((\d+) insertion(s)?(\(\+\))(, )?)/\e[1;32m\2\e[32m\1\e[m/g;
