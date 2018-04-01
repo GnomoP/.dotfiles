@@ -59,16 +59,16 @@ while [[ -n "$*" ]]; do
       ;;
 
     '-w' | '--write')
-      [[ -z "$2" ]] &&\
-        exit
-
       name="$(realpath "$0")"
       name="$(basename "$name")"
 
-      faketty () { script -qfc "$(printf "%q " "$@")"; }
-      faketty "$name" > "$2" &
+      faketty () {
+        script -qfc "$(printf "%q " "$@")"
+      }
 
-      tail --pid "$!" -f "$2" | perl -p "$HOME/.tailcolor.pl"
+      faketty "$name" > "/tmp/$$_dotfiles_push" &
+      tail --pid "$!" -f "/tmp/$$_dotfiles_push" | \
+        perl -p "$HOME/.tailcolor.pl"
 
       unset -f faketty
       unset name
