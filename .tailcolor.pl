@@ -22,8 +22,8 @@ LINE:
       ( \d+\ insertions?\(\+\) )
     }ax and
     s{
-      ( \d+ )\ ( files?\ changed(, )? )
-    }{\e[1;36m$1\e[36m$2$3\e[m}agx and
+      ( \d+ )\ ( files?\ changed,? )
+    }{\e[1;36m$1 \e[36m$2 \e[m}agx and
     s{
       ( \d+ )\ ( deletions? \( (-) \) (,\ )? )
     }{\e[1;31m$1\e[31m$2 \e[1;31m$3\e[31m$4\e[m}agx and
