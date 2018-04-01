@@ -13,12 +13,12 @@ LINE:
     }agx and next;
 
     s{
-      (\s*
+      (^\s*
         \[master\ [a-z0-9]{7,}\]
       \s*)
-      (\s*
+      (
       $commitname\ \d{4}-\d{2}-\d{2}\ \d{2}:\d{2}:\d{2}
-      \s*)
+      \s*$)
     }{\e[1;34m$1\e[1;31m$2\e[m}agx and next;
 
     if (m/(\d+ file(s)? changed(, )?)|(\d+ insertion(s)?\(\+\)(, )?)|(\d+ deletion(s)?\(-\)(, )?)/) {
