@@ -10,15 +10,10 @@ LINE:
       next;
     }
 
-    # ok
-    if (m/\s+\d+ file(s?) changed(, )?/) {
-      s/(\d+) file(s?) changed(, )?/\'\1\' \'\2\' \'\3\' \'\4\'/g;
-    }
-
-    if (m/((\d+) file(s)? changed(, )?)|(\d+ insertion(s)?\(\+\)(, )?)|(\d+ deletion(s)?\(-\)(, )?)/) {
-      s/((\d+) insertions?\(\+\)(, )?)/\e[32m\1\2\e[m/g; # 32m
-        s/((\d+) deletions?\(-\)(, )?)/\e[31m\1\2\e[m/g; # 31m
-         s/((\d+) files? changed(, )?)/<g1>\1<\/g1><g2>\2<\/g2>/g; # 36m
+    if (m/(\d+ file(s)? changed(, )?)|(\d+ insertion(s)?\(\+\)(, )?)|(\d+ deletion(s)?\(-\)(, )?)/) {
+      s/\d+ insertion(s)?\(\+\)(, )?/\e[32m$&\e[m/g;
+         s/\d+ deletion(s)?\(-\)(, )?/e[31m$&\e[m/g;
+         s/\d+ file(s)? changed(, )?/\e[36m$&\e[m/g;
     }
 
     if (m/^\s+[A-Za-z0-9]+\.\.[A-Za-z0-9]+\s+master -> master/) {
