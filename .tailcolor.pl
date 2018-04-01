@@ -11,7 +11,7 @@ LINE:
     }
 
     if (m/\d+ file(s?) changed(, )?/) {
-      print "Matchd, bish\n";
+      print "\nMatchd, bish\n";
       s/(\d+) file(s?) changed(, )?/\'\1\' \'\2\' \'\3\' \'\4\'/g;
     }
 
