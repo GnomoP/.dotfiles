@@ -5,12 +5,15 @@ use warnings;
 LINE:
   while (<>) {
   } continue {
-    s{ (^\+)\ ( .* ) }
+    s{ (^\s*\+)\ ( .* ) }
      {\e[1;34m$1 \e[0;34m$2 \e[m}ax and next;
-    s{ (^-)\ ( .* ) }
+    s{ (^\s*-)\ ( .* ) }
      {\e[1;33m$1 \e[0;33m$2 \e[m}ax and next;
-    s{ (^!)\ ( .* ) }
+    s{ (^\s*!)\ ( .* ) }
      {\e[1;31m$1 \e[0;31m$2 \e[m}ax and next;
+
+    s{ ^(\s*) ('.*')\ (->)\ ('.*')$ }
+     {$1\e[0;32m$2 \e[1;37m$3 \e[0;32m$4\e[m}ax and next;
     print or die "-p destination: $!\n";
   }
 # vim: syntax=perl

@@ -83,11 +83,12 @@ if ! shopt -oq posix; then
 fi
 
 # Complements for the '.bashrc'
+# Only on termite
 SRC="$HOME/src"
 export SRC
 
 if [[ -f "$SRC/_init" ]]; then
-  # shellcheck source=/root/src/
+  # shellcheck source=/dev/null
   source "$SRC/_init"
 fi
 # vim: syntax=sh

@@ -11,10 +11,11 @@ set +e
 
 export PATH="$HOME/bin:$SRC/bin:$PATH"
 
-_srcinitexc () {
-  for file in "$SRC"/exec/*; do
-    [[ -z "$file" ]] ||\
-    [[ ! -f "$file" ]] &&\
+srcinitload () {
+  for file in $***/*; do
+    [[ -z "$file" ||
+       -L "$file" ||
+    !  -f "$file" ]] &&\
       continue
 
     local EXECUTE='true'
@@ -28,7 +29,7 @@ _srcinitexc () {
 
       if [[ "$(perl "$SRC/_match" "$pattern" "$filename")" -eq 1 ]]; then
         [[ -n "$REFRESH_SHELL" ]] &&\
-          echo "- '$file'" | perl "$SRC/_color"
+          echo "- '$filename'" | perl "$SRC/_color"
         EXECUTE=''
       fi
     done < "$SRC/_ignore"
@@ -36,29 +37,13 @@ _srcinitexc () {
     [[ -n "$EXECUTE" && -f "$file" ]] &&
       if source "$file"; then
         [[ -n "$REFRESH_SHELL" ]] &&\
-          echo "+ '$file'" | perl "$SRC/_color"
+          echo "+ '$filename'" | perl "$SRC/_color"
       else
-        echo "! '$file'" | perl "$SRC/_color"
+        echo "! '$filename'" | perl "$SRC/_color"
       fi
   done
-} && _srcinitexc
-unset -f _srcinitexc
+} && srcinitload "$SRC/"
 
 append-path "./"
-
-## Shortcut to GnomoP (USB stick)
-if [[ -d "/media/$(whoami)/GnomoP" ]]; then
-  ln -sf "/media/$(whoami)/GnomoP" "$HOME/usb"
-else
-  [[ -s "$HOME/usb" ]] && rm -f "$HOME/usb"
-fi
-
-## Environmental variables
-export EDITOR='/usr/bin/vim'
-export VISUAL='/usr/bin/code'
-
-## Bindings
-bind 'set show-all-if-ambiguous on'
-bind 'TAB:menu-complete'
 # vim: syntax=sh
 # vim: set ts=2 sw=2 tw=80 et :

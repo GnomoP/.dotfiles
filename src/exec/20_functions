@@ -2,21 +2,20 @@
 
 ## Extended aliases
 ## Append a trailling 'e' to distinguish them
-scripte () {
-  if [[ -z "$*" ]]; then
-    script --timing="/tmp/$$_typescript.time" -q "/tmp/$$_typescript"
-  else
-    script "$@"
-  fi
-} && alias script='scripte'
+gitcolor-test () {
+  local log="$*"
 
-scriptreplaye () {
-  if [[ -z "$*" ]]; then
-    scriptreplay --timing="/tmp/$$_typescript.time" -q "/tmp/$$_typescript"
-  else
-    scriptreplay "$@"
-  fi
-} && alias scriptreplay='scriptreplaye'
+  [[ -z "$log" ]] &&\
+    log="$HOME/dummylog"
 
+  [[ ! -f "$log" ]] &&\
+    return 1
+
+  clear
+  while inotifywait -e modify "$HOME/.gitcolor" > /dev/null 2>&1; do
+    clear
+    perl "$HOME/.gitcolor" < "$log"
+  done
+}
 # vim: syntax=sh
 # vim: set ts=2 sw=2 tw=80 et :

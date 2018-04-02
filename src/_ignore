@@ -6,11 +6,17 @@
 # json/
 ^json/
 
+# bin/
+^bin/
+
 # *.swp
 \.swp$
 
 # .pl
 \.pl$
+
+# .lnk
+\.lnk$
 
 # *~
 ~$

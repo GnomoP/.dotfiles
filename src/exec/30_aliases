@@ -39,6 +39,10 @@ alias aliases='vim ~/.bash_aliases'
 alias gitignore='vim ./.gitignore'
 alias srcignore='vim ~/src/_ignore'
 
+## Extended aliases from '25_extended-aliases'
+alias script='scripte'
+alias scriptreplay='scriptreplaye'
+
 ## Refresh shell
 alias refresh="REFRESH_SHELL='true' exec \$SHELL"
 

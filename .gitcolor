@@ -66,9 +66,9 @@ LINE:
       next;
     }
 
-    if ( m{ ^\s* create\ mode\ \d+ }x )
+    if ( m{ ^\s* ( ( create )|( delete ) )\ mode\ \d+ }x )
     {
-      s{ ( ^\s* create\ mode )\ ( \d+ )\ ( .* ) }
+      s{ ( ^\s* \w+\ mode )\ ( \d+ )\ ( .* ) }
        {\e[1;32m$1 \e[0m\e[4;32m$2\e[0;33m $3\e[m}ax;
 
       next;
