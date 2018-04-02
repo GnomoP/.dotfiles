@@ -1,6 +1,8 @@
 use strict;
 use warnings;
 
+my $name = `whoami`.'\@'.`hostname`;
+
 LINE:
   while (<>) {
     # For a table of colors, see color-codes
@@ -11,7 +13,7 @@ LINE:
     # TODO get actual 'whoami' and 'hostname' outputs
     if ( m{ ^\s*
         ( \[master\ [a-z0-9]{7,}\] )
-      | ( root\@kali-kezio\ \d{4}-\d{2}-\d{2}\ \d{2}:\d{2}:\d{2} )
+      | ( $name\ \d{4}-\d{2}-\d{2}\ \d{2}:\d{2}:\d{2} )
             \s*$}ax )
     {
       s{ ( \[master\ [a-z0-9]{7,}\] )
@@ -40,18 +42,43 @@ LINE:
 
     if ( m{ ^\s* rewrite .* \ \( \d+ % \) }x )
     {
-      # Match the inverse of m{ ( \d{2}% ) | ( rewrite ) }ax
-      s{ (^\s* rewrite\ ) ( .* ) ( \( \d+ % \) \s+$ ) }
-       {\e[1;32m$1\e[0;32m$2\e[1;31m$3\e[m}ax;
-      #{\e[1;35m$&\e[m}ax;
+      s{ (^\s* rewrite )\ ( .* )\ ( \( \d+ % \) \s+$ ) }
+       {\e[1;32m$1 \e[0;33m$2 \e[1;31m$3\e[m}ax;
 
       next;
     }
+
+    if ( m{ ^\s* create\ mode\ \d+ }x )
+    {
+      s{ ( ^\s* create )\ ( mode )\ ( \d+ )\ ( .* ) }
+       {\e[1;32m$1 \e[0;32m$2 $3 \e[0;33m$4\e[m}ax;
+
+      next;
+    }
+
+    if ( m{ ^\s* rename\ .*\ \( \d+ % \) }x )
+    {
+      s{ ( ^\s* rename )\ ( .* )\ ( \( \d+ % \) ) }
+       {\e[1;32m$1 \e[0;33m$2 \e[1;31m$3\e[m}ax;
+
+      s{ ( \{\ =>\ ) ( .* ) ( \} ) }
+       {\e[1;33m$1\e[4;33m$2\e[m\e[1;33m\}\e[0;33m}ax;
+
+       next;
+    }
+
+   #if ( m{ ^Counting\ objects:\ \d+ ,\ done\. }x )
+   #{
+   #  s{ ( \d+ )|( \D* ) }
+   #   {}ax;
+   #}
 
     if ( m{ ^\s* To\  (https?://)|(git\+ssh) }x )
     {
       s{ ( ^\s* To\  ) ( .*$ ) }
        {\e[1;37m$1\e[4;36m$2\e[m}ax;
+
+      next;
     }
 
     if ( m{ ^\s* [a-z0-9]{7,} \.\. [a-z0-9]{7,} \ {2}
@@ -62,19 +89,18 @@ LINE:
 
       s{ ( \S* ) \s+ ( -> ) \s+ ( \S* ) }
        {\e[0;34m$1 \e[1;32m$2 \e[0;34m$3\e[m}ax;
+
+      next;
     }
 
-   #
-   #if (m/('?master'?)|('?origin'?)/) {
-   #  s/('?master'?)/\e[1;34m\1\e[m/g;
-   #  s/('?origin'?)/\e[1;34m\1\e[m/g;
-   #}
+    s{ ( '?master'? )|( '?origin'? ) }
+     {\e[1;34m$&\e[m}agx;
 
-   #if (m/\W*$commitname\W*/) {
-   #  s/(\W*$commitname\W*)/\e[1;31m\1\e[m/g;
-   #}
+    s{ ( '? ( \./ )? $name\ \d{4}-\d{2}-\d{2}\ \d{2}:\d{2}:\d{2} '? ) }
+     {\e[1;31m$1\e[m}agx;
+
   } continue {
-    print or die "-p destination: $!\n";
+    print "+ $_" or die "-p destination: $!\n";
   }
 # vim: syntax=perl
 # vim: set ts=2 sw=2 tw=80 et :

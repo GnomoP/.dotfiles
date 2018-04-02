@@ -26,28 +26,24 @@ _srcinitexc () {
       local filename
       filename="$(sed -E 's/^\/root\/src\///g' <<< "$file")"
 
-      if [[ "$(perl "$SRC/_match.pl" "$pattern" "$filename")" -eq 1 ]]; then
-        [[ -n "$REFRESH_SHELL" ]] && echo "Ignoring '$file'"
+      if [[ "$(perl "$SRC/_match" "$pattern" "$filename")" -eq 1 ]]; then
+        [[ -n "$REFRESH_SHELL" ]] && echo "- '$file'" | perl "$SRC/_color"
         EXECUTE=''
       fi
     done < "$SRC/_ignore"
 
-    if [[ -n "$EXECUTE" && -f "$file" ]]; then
-      [[ -n "$REFRESH_SHELL" ]] &&\
-        echo "Sourcing '$file'"
-
-      source "$file" ||\
-        echo "Failed to source '$file'"
-    fi
-  done <   <(find "$SRC/exec/" -follow -type f -print0)
+    [[ -n "$EXECUTE" && -f "$file" ]] &&
+      if source "$file"; then
+        [[ -n "$REFRESH_SHELL" ]] &&\
+          echo "+ '$file'" | perl "$SRC/_color"
+      else
+        echo "! '$file'" | perl "$SRC/_color"
+      fi
+  done < <(find "$SRC/exec/" -follow -type f -print0 | sort)
 } && _srcinitexc
 unset -f _srcinitexc
 
 append-path "./"
-
-## Merge ~/.Xresources
-[[ -f "$HOME/.Xresources" ]] &&\
-  xrdb -merge "$HOME/.Xresources"
 
 ## Custom aliases
 if [[ -f "$HOME/.bash_aliases" ]]; then
