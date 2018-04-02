@@ -7,8 +7,8 @@ _gitrepos
 _gitlast.log
 _gitlast.log.raw
 
-# Avoid duplicate srcinit files
-src/_init
+# .git from vim plugins
+.vim/plugins/*/.git
 
 # Vim swap and backup files
 *.swp

@@ -1,0 +1,50 @@
+#!/bin/bash
+# shellcheck disable=SC1091
+# shellcheck source=/dev/null
+
+## Ensure these flags aren't set. At all
+set +u
+set +e
+
+[[ -n "$SRC" ]] &&\
+  SRC="$HOME/src"
+
+export PATH="$HOME/bin:$SRC/bin:$PATH"
+
+srcinitload () {
+  for file in $***/*; do
+    [[ -z "$file" ||
+       -L "$file" ||
+    !  -f "$file" ]] &&\
+      continue
+
+    local EXECUTE='true'
+    while read -sr pattern; do
+      [[ -z "$pattern" ]] ||\
+      grep -qE '^#' <<< "$pattern" &&\
+        continue
+
+      local filename
+      filename="$(sed -E 's/^\/root\/src\///g' <<< "$file")"
+
+      if [[ "$(perl "$SRC/_match" "$pattern" "$filename")" -eq 1 ]]; then
+        [[ -n "$REFRESH_SHELL" ]] &&\
+          echo "- '$filename'" | perl "$SRC/_color"
+        EXECUTE=''
+      fi
+    done < "$SRC/_ignore"
+
+    [[ -n "$EXECUTE" && -f "$file" ]] &&
+      if source "$file"; then
+        [[ -n "$REFRESH_SHELL" ]] &&\
+          echo "+ '$filename'" | perl "$SRC/_color"
+      else
+        echo "! '$filename'" | perl "$SRC/_color"
+      fi
+  done
+} && srcinitload "$SRC/"
+
+REFRESH_SHELL=
+pathmunge "./" "$SRC/bin" "$HOME/bin"
+# vim: syntax=sh
+# vim: set ts=2 sw=2 tw=80 et :

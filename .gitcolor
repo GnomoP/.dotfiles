@@ -23,6 +23,8 @@ LINE:
      }x and s{(.*)}{\e[1;37m$1\e[0m}ag and next;
 
     m{ ( ^fatal )
+     | ( ^hint )
+     | ( ^warning )
     }x and s{(.*)}{\e[1;37;41m$1\e[0m}ag and next;
 
     if ( m{ ^Script\ ( started )|( done )\ on
@@ -128,8 +130,8 @@ LINE:
 
   } continue {
     $linecount += 1;
-    $linecount = sprintf "%02d", $linecount;
-    my $lineprint = $linecount =~ s{(\d{2})}{\e[7m\e[37m$1\e[0m}r;
+    $linecount = sprintf "%03d", $linecount;
+    my $lineprint = $linecount =~ s{(\d{3})}{\e[7m\e[37m$1\e[0m}r;
 
     print "$lineprint $_" or die "-p destination: $!\n";
 
