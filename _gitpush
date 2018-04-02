@@ -37,7 +37,7 @@ pull () {
   ln -sf "_gitrepos/$COMMITNAME" "../_gitlast"
 
   # shellcheck disable=SC2010
-  if [[ "$(find . -maxdepth 1 -type d | grep -cvx '^.$')" -gt 10 ]]; then
+  if [[ "$(find . -maxdepth 1 -type d | grep -cvx '^.$')" -gt 11 ]]; then
     local dir
     dir="$(find . -maxdepth 1 -type d | grep -vx '^.$' | sort | head -n 1)"
 

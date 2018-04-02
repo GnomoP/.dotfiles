@@ -25,10 +25,28 @@ alias ll='ls -l'
 alias freeram='free && sync && echo 3 > /proc/sys/vm/drop_caches && free'
 alias dirfiles='l | grep -v ^d | grep -v ^t | wc -l'
 
-## Nicknames and shortnames
+## Command nicknames
 alias wvim='wvim-term'
-alias dpush='dotfiles-push'
 alias vscode='code'
+alias dotpush='dotfiles-push'
+
+## Extended aliases
+## Append a trailling 'e' to distinguish them
+scripte () {
+  if [[ -z "$*" ]]; then
+    script --timing="/tmp/$$_typescript.time" -q "/tmp/$$_typescript"
+  else
+    script "$@"
+  fi
+} && alias script='scripte'
+
+scriptreplaye () {
+  if [[ -z "$*" ]]; then
+    scriptreplay --timing="/tmp/$$_typescript.time" -q "/tmp/$$_typescript"
+  else
+    scriptreplay "$@"
+  fi
+} && alias scriptreplay='scriptreplaye'
 
 ## Commonly edited config files
 alias vimrc='vim ~/.vimrc'

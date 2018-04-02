@@ -12,7 +12,7 @@ set +e
 export PATH="$HOME/bin:$SRC/bin:$PATH"
 
 _srcinitexc () {
-  while read -sr -d '' file; do
+  for file in "$SRC"/exec/*; do
     [[ -z "$file" ]] ||\
     [[ ! -f "$file" ]] &&\
       continue
@@ -40,17 +40,11 @@ _srcinitexc () {
       else
         echo "! '$file'" | perl "$SRC/_color"
       fi
-  done < <(find "$SRC/exec/" -follow -type f -print0 | sort)
+  done
 } && _srcinitexc
 unset -f _srcinitexc
 
 append-path "./"
-
-## Custom aliases
-if [[ -f "$HOME/.bash_aliases" ]]; then
-  # shellcheck source=/root/.bash_aliases
-  source "$HOME/.bash_aliases"
-fi
 
 ## Shortcut to GnomoP (USB stick)
 if [[ -d "/media/$(whoami)/GnomoP" ]]; then

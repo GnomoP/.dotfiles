@@ -10,14 +10,24 @@ LINE:
     # Bash verbose output
     s{(^\++.*)}{\e[1;37;41m$1\e[m}ag and next;
 
-    # TODO get actual 'whoami' and 'hostname' outputs
+    m{ ( ^Counting )
+     | ( ^Delta )
+     | ( ^Compressing )
+     | ( ^Writing )
+     | ( ^Total )
+     | ( ^remote )
+     | ( ^Receiving )
+     | ( ^Resolving )
+     | ( ^Directory )
+     }x and s{(.*)}{\e[1;37m$1\e[0m}ag;
+
     if ( m{ ^\s*
         ( \[master\ [a-z0-9]{7,}\] )
       | ( $name\ \d{4}-\d{2}-\d{2}\ \d{2}:\d{2}:\d{2} )
             \s*$}ax )
     {
       s{ ( \[master\ [a-z0-9]{7,}\] )
-       \ (root\@kali-kezio\ \d{4}-\d{2}-\d{2}\ \d{2}:\d{2}:\d{2} ) }
+       \ ($name\ \d{4}-\d{2}-\d{2}\ \d{2}:\d{2}:\d{2} ) }
        {\e[1;34m$1 \e[1;31m$2\e[m}agx;
 
       next;

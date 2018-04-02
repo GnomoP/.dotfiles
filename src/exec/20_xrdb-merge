@@ -1,0 +1,5 @@
+#!/bin/bash
+[[ -f "$HOME/.Xresources" ]] &&\
+  xrdb -merge "$HOME/.Xresources"
+# vim: syntax=sh
+# vim: set ts=2 sw=2 tw=80 et :

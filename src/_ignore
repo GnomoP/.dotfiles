@@ -7,7 +7,12 @@
 ^json/
 
 # *.swp
-.swp$
+\.swp$
 
+# .pl
+\.pl$
+
+# *~
+~$
 #  vim: syntax=conf
 #  vim: set ts=2 sw=2 tw=80 et :
