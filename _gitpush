@@ -63,12 +63,12 @@ while [[ -n "$1" ]]; do
       name="$(realpath "$0")"
       name="$(basename "$name")"
 
-      faketty () {
+      gitfaketty () {
         printf "\n"
         script -qfc "$(printf "%q " "$@")" "/tmp/$$_gitlast.log"
       }
 
-      faketty "$name" > "/tmp/$$_dotfiles_push" &
+      gitfaketty "$name" > "/tmp/$$_dotfiles_push" &
       tail --pid "$!" -f "/tmp/$$_dotfiles_push" | \
         perl -p "$HOME/.gitcolor"
 
@@ -77,7 +77,7 @@ while [[ -n "$1" ]]; do
       #rm "/tmp/$$_gitlast.log.raw"
       #rm "/tmp/$$_dotfiles_push"
 
-      unset -f faketty
+      unset -f gitfaketty
       unset name
       ;;
 
