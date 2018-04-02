@@ -1,0 +1,22 @@
+Script started on 2018-04-01 23:22:56-0300
+[master 6c26c61] root@kali-kezio 2018-04-01 23:22:56
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+Counting objects: 3, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 342 bytes | 342.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.K
+To git+ssh://github.com/GnomoP/.dotfiles-kali
+   2c35291..6c26c61  master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+Cloning into 'root@kali-kezio 2018-04-01 23:22:56'...
+remote: Counting objects: 1029, done.K
+remote: Compressing objects: 100% (614/614),Kdone.K
+remote:nTotale1029 (delta1639),0reused0790K(delta2400),Kpack-reused 0K
+Receiving objects: 100% (1029/1029), 140.39KKiB||2138.00iKiB/s, done.
+Resolving deltas: 100% (639/639), done.
+Directory count is greater than 10
+Removing './root@kali-kezio 2018-04-01 15:18:18' from _gitrepos
+
+Script done on 2018-04-01 23:23:18-0300

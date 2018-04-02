@@ -50,10 +50,16 @@ LINE:
 
     if ( m{ ^\s* create\ mode\ \d+ }x )
     {
-      s{ ( ^\s* create )\ ( mode )\ ( \d+ )\ ( .* ) }
-       {\e[1;32m$1 \e[0;32m$2 $3 \e[0;33m$4\e[m}ax;
+      s{ ( ^\s* create\ mode )\ ( \d+ )\ ( .* ) }
+       {\e[1;32m$1 \e[0m\e[4;32m$2\e[0;33m $3\e[m}ax;
 
       next;
+    }
+
+    if ( m{ ^\s* mode\ change\ \d+ }x )
+    {
+      s{ ( ^\s* mode\ change )\ ( \d+ )\ ( => )\ ( \d+ )\ ( .* ) }
+       {\e[1;32m$1 \e[0m\e[4;32m$2\e[0m \e[1;32m$3 \e[0m\e[4;32m$4\e[0;33m $5\e[m}ax;
     }
 
     if ( m{ ^\s* rename\ .*\ \( \d+ % \) }x )
@@ -61,8 +67,8 @@ LINE:
       s{ ( ^\s* rename )\ ( .* )\ ( \( \d+ % \) ) }
        {\e[1;32m$1 \e[0;33m$2 \e[1;31m$3\e[m}ax;
 
-      s{ ( \{\ =>\ ) ( .* ) ( \} ) }
-       {\e[1;33m$1\e[4;33m$2\e[m\e[1;33m\}\e[0;33m}ax;
+      s{ ( \{ ) ( .* )\ ( => )\ ( .* ) ( \} ) }
+       {\e[0m\e[0;33m$1 \e[1;33m$2 \e[1;32m$3 \e[1;33m$4 \e[0;33m$5\e[0m}ax;
 
        next;
     }
@@ -100,7 +106,7 @@ LINE:
      {\e[1;31m$1\e[m}agx;
 
   } continue {
-    print "+ $_" or die "-p destination: $!\n";
+    print or die "-p destination: $!\n";
   }
 # vim: syntax=perl
 # vim: set ts=2 sw=2 tw=80 et :
