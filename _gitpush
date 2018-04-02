@@ -68,12 +68,13 @@ while [[ -n "$1" ]]; do
         script -qfc "$(printf "%q " "$@")" "/tmp/$$_gitlast.log"
       }
 
-      faketty "$name" &
-      tail --pid "$!" -f "/tmp/$$_gitlast.log" | \
+      faketty "$name" > "/tmp/$$_dotfiles_push" &
+      tail --pid "$!" -f "/tmp/$$_dotfiles_push" | \
         perl -p "$HOME/.tailcolor.pl"
 
       cp "/tmp/$$_gitlast.log" "$HOME/.dotfiles/_gitlast.log.raw" 2>&1
       col -b < "/tmp/$$_gitlast.log" > "$HOME/.dotfiles/_gitlast.log.raw" 2>&1
+      #rm "/tmp/$$_gitlast.log.raw"
       #rm "/tmp/$$_dotfiles_push"
 
       unset -f faketty
