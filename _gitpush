@@ -72,7 +72,8 @@ while [[ -n "$1" ]]; do
       tail --pid "$!" -f "/tmp/$$_dotfiles_push" | \
         perl -p "$HOME/.tailcolor.pl"
 
-      cat "/tmp/$$_gitlast.log" > "$HOME/.dotfiles/_gitlast.log" 2>&1
+      cp "/tmp/$$_gitlast.log" "$HOME/.dotfiles/_gitlast.log.raw" 2>&1
+      col -b < "/tmp/$$_gitlast.log" > "$HOME/.dotfiles/_gitlast.log.raw" 2>&1
       rm "/tmp/$$_gitlast.log"
       rm "/tmp/$$_dotfiles_push"
 
