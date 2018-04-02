@@ -44,6 +44,7 @@ srcinitload () {
   done
 } && srcinitload "$SRC/"
 
-append-path "./"
+REFRESH_SHELL=
+pathmunge "./"
 # vim: syntax=sh
 # vim: set ts=2 sw=2 tw=80 et :

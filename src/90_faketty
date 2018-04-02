@@ -1,0 +1,12 @@
+#!/bin/bash
+
+faketty () {
+  local TYPESCRIPT="/tmp/$$_faketty"
+  [[ -n "$2" ]] &&\
+    TYPESCRIPT="$1" && shift
+
+  script -qfc "$(printf "%q " "$@")" "$TYPESCRIPT"
+}
+
+# vim: syntax=sh
+# vim: set ts=2 sw=2 tw=80 et :

@@ -1,7 +1,9 @@
 #!/bin/bash
 
 ## Environmental variables
+export PAGER='/usr/bin/less'
 export EDITOR='/usr/bin/vim'
 export VISUAL='/usr/bin/code'
+export GREP_COLOR='1;31'
 # vim: syntax=sh
 # vim: set ts=2 sw=2 tw=80 et :

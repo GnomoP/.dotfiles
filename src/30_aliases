@@ -26,6 +26,10 @@ alias freeram='free && sync && echo 3 > /proc/sys/vm/drop_caches && free'
 alias dirfiles='l | grep -v ^d | grep -v ^t | wc -l'
 
 ## Command nicknames
+alias pager="\$PAGER"
+alias editor="\$EDITOR"
+
+alias todo='todo-txt'
 alias wvim='wvim-term'
 alias vscode='code'
 alias dotpush='dotfiles-push'
@@ -46,19 +50,22 @@ alias scriptreplay='scriptreplaye'
 ## Refresh shell
 alias refresh="REFRESH_SHELL='true' exec \$SHELL"
 
-## Commonly used commands in only one or two characters
+## bash_it substitutes
+alias ra='rails'
+alias rapp='rails application'
+
+## Commonly used commands in only a few characters
 alias e='echo'
 alias g='git'
-alias gc='git clone'
-alias gl='git ls-tree --full-tree'
-alias gp='git pull'
+alias gls='git ls-tree --full-tree'
 alias l='ls -lAh'
 alias L='less -F'
 alias p='dotfiles-push -w'
 alias pf='printf'
 alias q='exit'
 alias r='refresh'
-alias v='vim'
+alias t='todo-txt'
 alias wv='wvim'
+alias x='atool -x'
 # vim: syntax=sh
 # vim: set ts=2 sw=2 tw=80 et :

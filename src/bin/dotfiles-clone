@@ -1,0 +1,15 @@
+#!/bin/bash
+dotfiles-clone () {
+  local CLONE_DIR='.'
+  [[ -n "$1" && -d "$1" ]] &&\
+    CLONE_DIR="$1"
+
+  local URL='git+ssh://git@github.com/GnomoP/.dotfiles-kali'
+  local COMMIT
+  COMMIT="$(git -C "$HOME/.dotfiles" log -1 --pretty=%s)"
+
+  git clone "$URL" "$CLONE_DIR/$COMMIT"
+
+} && dotfiles-clone "$@"
+# vim: syntax=sh
+# vim: set ts=2 sw=2 tw=80 et :
