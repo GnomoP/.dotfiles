@@ -27,7 +27,8 @@ _srcinitexc () {
       filename="$(sed -E 's/^\/root\/src\///g' <<< "$file")"
 
       if [[ "$(perl "$SRC/_match" "$pattern" "$filename")" -eq 1 ]]; then
-        [[ -n "$REFRESH_SHELL" ]] && echo "- '$file'" | perl "$SRC/_color"
+        [[ -n "$REFRESH_SHELL" ]] &&\
+          echo "- '$file'" | perl "$SRC/_color"
         EXECUTE=''
       fi
     done < "$SRC/_ignore"
