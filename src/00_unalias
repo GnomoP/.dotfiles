@@ -1,0 +1,20 @@
+#!/bin/bash
+unalias bshena
+unalias bshenc
+unalias bshenp
+unalias bshha
+unalias bshhc
+unalias bshhp
+unalias bshsa
+unalias bshsc
+unalias bshsch
+unalias bshsp
+unalias g
+unalias ga
+unalias r
+unalias ra
+unalias q
+unalias vbpf
+unalias vbrc
+# vim: syntax
+# vim: set ts

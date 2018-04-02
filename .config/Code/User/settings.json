@@ -1,0 +1,32 @@
+{
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 30,
+
+    "editor.fontSize": 13,
+    "editor.tabSize": 2,
+
+    "shellcheck.run": "onSave",
+
+    "[python]": {
+        "editor.tabSize": 4
+    },
+
+    "editor.fontFamily": "'Hack', 'Menlo for Powerline', 'Monospace'",
+    "editor.cursorStyle": "block-outline",
+
+    "python.autoComplete.addBrackets": true,
+    "python.pythonPath": "/usr/bin/python3.6",
+
+    "workbench.colorTheme": "One Dark Pro",
+    "workbench.iconTheme": "vscode-icons",
+
+    "terminal.integrated.shell.linux": "/bin/zsh",
+
+    //"discord.clientID": "197904839253032961",
+
+    "csharp.suppressDotnetInstallWarning": true,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+
+    "window.zoomLevel": 0,
+}

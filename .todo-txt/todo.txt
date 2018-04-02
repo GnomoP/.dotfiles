@@ -1,0 +1,5 @@
+Write reference for aliases
+Write reference for functions and extended aliases
+Write reference for bash and perl code guidelines
+Write requirements for all of .dotfiles
+Properly configure my .vimrc

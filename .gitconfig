@@ -1,0 +1,11 @@
+[user]
+	name = GnomoP
+	email = ks1202@protonmail.ch
+;  vim: syntax=gitconfig
+;  vim: set ts=2 sw=2 tw=80 et :
+[color]
+	ui = always
+	branch = always
+	status = always
+	diff = always
+	grep = always
