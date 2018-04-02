@@ -70,10 +70,10 @@ while [[ -n "$1" ]]; do
 
       faketty "$name" > "/tmp/$$_dotfiles_push" &
       tail --pid "$!" -f "/tmp/$$_dotfiles_push" | \
-        perl -p "$HOME/.tailcolor.pl"
+        perl -p "$HOME/.gitcolor"
 
       cp "/tmp/$$_gitlast.log" "$HOME/.dotfiles/_gitlast.log.raw" 2>&1
-      col -b < "/tmp/$$_gitlast.log" > "$HOME/.dotfiles/_gitlast.log.raw" 2>&1
+      col -b < "/tmp/$$_gitlast.log" > "$HOME/.dotfiles/_gitlast.log" 2>&1
       #rm "/tmp/$$_gitlast.log.raw"
       #rm "/tmp/$$_dotfiles_push"
 

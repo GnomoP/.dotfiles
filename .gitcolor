@@ -1,6 +1,7 @@
 use strict;
 use warnings;
 
+my $linecount = 0;
 my $name = `whoami`.'\@'.`hostname`;
 
 LINE:
@@ -21,10 +22,17 @@ LINE:
      | ( ^Directory )
      }x and s{(.*)}{\e[1;37m$1\e[0m}ag;
 
-    if ( m{ ^\s*
-        ( \[master\ [a-z0-9]{7,}\] )
-      | ( $name\ \d{4}-\d{2}-\d{2}\ \d{2}:\d{2}:\d{2} )
-            \s*$}ax )
+    if ( m{ ^Script\ ( started )|( done )\ on
+        \ \d{4}-\d{2}-\d{2}\ \d{2}:\d{2}:\d{2}-\d{4} }x )
+    {
+      s{ ( \D+ )\ ( [0-9\-\ :]+ ) }
+       {\e[1m\e[3;37m$1 \e[1;36m$2\e[0m}ax;
+
+      next
+    }
+
+    if ( m{ ^\s* ( \[master\ [a-z0-9]{7,}\] )
+        \ ( $name\ \d{4}-\d{2}-\d{2}\ \d{2}:\d{2}:\d{2} ) \s*$}ax )
     {
       s{ ( \[master\ [a-z0-9]{7,}\] )
        \ ($name\ \d{4}-\d{2}-\d{2}\ \d{2}:\d{2}:\d{2} ) }
@@ -116,7 +124,12 @@ LINE:
      {\e[1;31m$1\e[m}agx;
 
   } continue {
-    print or die "-p destination: $!\n";
+    $linecount += 1;
+    $linecount = sprintf "%02d", $linecount;
+    my $lineprint = $linecount =~ s{(\d{2})}{\e[7m\e[37m$1\e[0m}r;
+
+    print "$lineprint $_" or die "-p destination: $!\n";
+
   }
 # vim: syntax=perl
 # vim: set ts=2 sw=2 tw=80 et :

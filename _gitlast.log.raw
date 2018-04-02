@@ -1,22 +1,29 @@
-Script started on 2018-04-01 23:50:18-0300
-[master af474a2] root@kali-kezio 2018-04-01 23:50:18
- 2 files changed, 33 insertions(+), 5 deletions(-)
-Counting objects: 4, done.
+Script started on 2018-04-02 00:45:58-0300
+[master 8f30805] root@kali-kezio 2018-04-02 00:45:58
+ 11 files changed, 75 insertions(+), 37 deletions(-)
+ rewrite _gitlast.log.raw (73%)
+ rename src/exec/{append-path => 00_append-path} (100%)
+ rename src/{check-if-inside-a-script-session => exec/00_script-check} (62%)
+ create mode 100644 src/exec/20_xrdb-merge
+ rename .bash_aliases => src/exec/30_aliases (73%)
+ rename src/exec/{color-codes => 50_color-codes} (100%)
+ create mode 100644 src/exec/90_xrdb-merge
+Counting objects: 12, done.
 Delta compression using up to 4 threads.
-Compressing objects: 100% (4/4), done.
-Writing objects: 100% (4/4), 1014 bytes | 1014.00 KiB/s, done.
-Total 4 (delta 2), reused 0 (delta 0)
-remote: Resolving deltas: 100% (2/2), completed with 2 local objects.K
+Compressing objects: 100% (12/12), done.
+Writing objects: 100% (12/12), 2.36 KiB | 2.36 MiB/s, done.
+Total 12 (delta 6), reused 0 (delta 0)
+remote: Resolving deltas: 100% (6/6), completed with 6 local objects.K
 To git+ssh://github.com/GnomoP/.dotfiles-kali
-   6c26c61..af474a2  master -> master
+   af474a2..8f30805  master -> master
 Branch 'master' set up to track remote branch 'master' from 'origin'.
-Cloning into 'root@kali-kezio 2018-04-01 23:50:18'...
-remote: Counting objects: 1033, done.K
-remote: Compressing objects: 100% (616/616),Kdone.K
-remote:nTotale1033 (delta1641),0reused 794 (delta 402), pack-reused 0K
-Receiving objects: 100% (1033/1033), 141.32 KiB | 294.00 KiB/s, done.
-Resolving deltas: 100% (641/641), done.
+Cloning into 'root@kali-kezio 2018-04-02 00:45:58'...
+remote: Counting objects: 1045, done.K
+remote: Compressing objects: 100% (626/626),Kdone.K
+remote:nTotale1045 (delta1647),0reused 802 (delta 404), pack-reused 0K
+Receiving objects: 100% (1045/1045), 143.71 KiB | 306.00 KiB/s, done.
+Resolving deltas: 100% (647/647), done.
 Directory count is greater than 10
-Removing './root@kali-kezio 2018-04-01 15:27:38' from _gitrepos
+Removing './.bak' from _gitrepos
 
-Script done on 2018-04-01 23:50:37-0300
+Script done on 2018-04-02 00:46:18-0300

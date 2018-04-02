@@ -30,24 +30,6 @@ alias wvim='wvim-term'
 alias vscode='code'
 alias dotpush='dotfiles-push'
 
-## Extended aliases
-## Append a trailling 'e' to distinguish them
-scripte () {
-  if [[ -z "$*" ]]; then
-    script --timing="/tmp/$$_typescript.time" -q "/tmp/$$_typescript"
-  else
-    script "$@"
-  fi
-} && alias script='scripte'
-
-scriptreplaye () {
-  if [[ -z "$*" ]]; then
-    scriptreplay --timing="/tmp/$$_typescript.time" -q "/tmp/$$_typescript"
-  else
-    scriptreplay "$@"
-  fi
-} && alias scriptreplay='scriptreplaye'
-
 ## Commonly edited config files
 alias vimrc='vim ~/.vimrc'
 alias bashrc='vim ~/.bashrc'
@@ -55,6 +37,7 @@ alias inputrc='vim ~/.inputrc'
 alias srcinit='vim ~/.srcinit'
 alias aliases='vim ~/.bash_aliases'
 alias gitignore='vim ./.gitignore'
+alias srcignore='vim ~/src/_ignore'
 
 ## Refresh shell
 alias refresh="REFRESH_SHELL='true' exec \$SHELL"
