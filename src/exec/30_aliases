@@ -1,21 +1,21 @@
 #!/bin/bash
 
 ## Enable color support for some commands
-if [[ -x /usr/bin/dircolors ]]; then
-  if [[ -r "$HOME/.dircolors" ]]; then
-    eval "$(dircolors -b "$HOME"/.dircolors)"
-  else
-    eval "$(dircolors -b)"
-  fi
-
-  alias ls='ls --color=always'
-  alias dir='dir --color=always'
-  alias vdir='vdir --color=always'
-
-  alias grep='grep --color=always'
-  alias fgrep='fgrep --color=always'
-  alias egrep='egrep --color=always'
-fi
+#if [[ -x /usr/bin/dircolors ]]; then
+#  if [[ -r "$HOME/.dircolors" ]]; then
+#    eval "$(dircolors -b "$HOME"/.dircolors)"
+#  else
+#    eval "$(dircolors -b)"
+#  fi
+#
+#  alias ls='ls --color=always'
+#  alias dir='dir --color=always'
+#  alias vdir='vdir --color=always'
+#
+#  alias grep='grep --color=always'
+#  alias fgrep='fgrep --color=always'
+#  alias egrep='egrep --color=always'
+#fi
 
 ## Directory listing
 alias la='ls -A'
@@ -28,6 +28,10 @@ alias dirfiles='l | grep -v ^d | grep -v ^t | wc -l'
 ## Command nicknames
 alias pager="\$PAGER"
 alias editor="\$EDITOR"
+
+if [[ -n "$VIM_THEME" ]]; then
+  alias vim="vim -c 'colorscheme \$VIM_THEME'"
+fi
 
 alias todo='todo-txt'
 alias wvim='wvim-term'
@@ -64,6 +68,7 @@ alias p='dotfiles-push -w'
 alias pf='printf'
 alias q='exit'
 alias r='refresh'
+alias re='reload'
 alias t='todo-txt'
 alias wv='wvim'
 alias x='atool -x'

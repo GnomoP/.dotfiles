@@ -136,14 +136,17 @@ export SCM_CHECK=true
 
 # (Advanced): Uncomment this to make Bash-it reload itself automatically
 # after enabling or disabling aliases, plugins, and completions.
-export BASH_IT_AUTOMATIC_RELOAD_AFTER_CONFIG_CHANGE=1
+#export BASH_IT_AUTOMATIC_RELOAD_AFTER_CONFIG_CHANGE=1
 
-# Load Bash It
+export EDITOR='/usr/bin/vim'
+export PAGER='/usr/bin/less'
+
 source "$BASH_IT"/bash_it.sh
 
 case "$TERM" in
   xterm-termite|xterm-wvim)
-    [[ -f "$SRC/_init" ]] &&\
-      source "$SRC/_init"
+    source "$SRC/_init"
+    ;;
+  *)
     ;;
 esac

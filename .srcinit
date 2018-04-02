@@ -45,6 +45,6 @@ srcinitload () {
 } && srcinitload "$SRC/"
 
 REFRESH_SHELL=
-pathmunge "./"
+pathmunge "./" "$SRC/bin" "$HOME/bin"
 # vim: syntax=sh
 # vim: set ts=2 sw=2 tw=80 et :

@@ -1,20 +1,4 @@
 #!/bin/bash
 
-if [[ -n "$WVIM" ]] &&\
-   [[ -x "$(realpath "$WVIM")" ]]; then
-  WVIM="$(realpath "$WVIM")"
-else
-  WVIM="/usr/bin/vim"
-fi
-
-export WVIM
-
-if [[ -n "$WVIM_ARGS" ]]; then
-  vim "$WVIM_ARGS"
-  unset WVIM_ARGS
-else
-  vim
-fi
-
-[[ -n "$WVIM_EXEC" ]] &&\
-  exec "$WVIM_EXEC"
+export WVIM="$HOME/bin/wvim-vim"
+exec bash
