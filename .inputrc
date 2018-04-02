@@ -62,5 +62,14 @@ $endif
 # "\e[F": end-of-line
 
 $endif
+
+# Completion settings
+
+TAB: menu-complete
+Control-f: menu-complete-backward
+
+set show-all-if-ambiguous on
+set menu-complete-display-prefix on
+
 #  vim: syntax=readline
 #  vim: set ts=2 sw=2 tw=80 et :
