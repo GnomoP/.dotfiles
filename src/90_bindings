@@ -1,0 +1,7 @@
+#!/bin/bash
+
+## Bindings
+bind 'set show-all-if-ambiguous on'
+bind 'TAB:menu-complete'
+# vim: syntax=sh
+# vim: set ts=2 sw=2 tw=80 et :

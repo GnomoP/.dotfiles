@@ -1,0 +1,37 @@
+#!/bin/bash
+
+[[ -n "$SRC" ]] &&\
+  SRC="$HOME/src"
+
+srcinitshortcut () {
+  for file in $***/*; do
+    [[ -z "$file" ||
+       -L "$file" ||
+    !  -f "$file" ]] &&\
+      continue
+
+    local LINK_FILE='true'
+    while read -sr pattern; do
+      [[ -z "$pattern" ]] ||\
+      grep -qE '^#' <<< "$pattern" &&\
+        continue
+
+      local filename
+      filename="$(sed -E 's/^\/root\/src\///g' <<< "$file")"
+
+      [[ "$(perl "$SRC/_match" "$pattern" "$filename")" -eq 1 ]] &&\
+        LINK_FILE=''
+    done < "$SRC/_ignore"
+
+    if [[ -n "$LINK_FILE" && -f "$file" ]]; then
+      local shortcut
+      shortcut="$(sed -E 's/(^[0-9]+_)(.*)/\2.lnk/' <<< "$filename")"
+      if ln -sf "$file" "$SRC/$shortcut"; then
+        [[ -n "$REFRESH_SHELL" ]] &&\
+          echo "  '$filename' -> '$shortcut'" | perl "$SRC/_color"
+      else
+        echo "  ! '$filename'" | perl "$SRC/_color"
+      fi
+    fi
+  done
+} && srcinitshortcut "$SRC/"

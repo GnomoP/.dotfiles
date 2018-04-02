@@ -1,0 +1,21 @@
+#!/bin/bash
+
+## Extended aliases
+## Append a trailling 'e' to distinguish them
+gitcolor-test () {
+  local log="$*"
+
+  [[ -z "$log" ]] &&\
+    log="$HOME/dummylog"
+
+  [[ ! -f "$log" ]] &&\
+    return 1
+
+  clear
+  while inotifywait -e modify "$HOME/.gitcolor" > /dev/null 2>&1; do
+    clear
+    perl "$HOME/.gitcolor" < "$log"
+  done
+}
+# vim: syntax=sh
+# vim: set ts=2 sw=2 tw=80 et :

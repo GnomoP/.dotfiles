@@ -1,0 +1,10 @@
+#!/bin/bash
+
+## Shortcut to GnomoP (USB stick)
+if [[ -d "/media/$(whoami)/GnomoP" ]]; then
+  ln -sf "/media/$(whoami)/GnomoP" "$HOME/usb"
+elif [[ -L "$HOME/usb" ]]; then
+  rm -f "$HOME/usb"
+fi
+# vim: syntax=sh
+# vim: set ts=2 sw=2 tw=80 et :

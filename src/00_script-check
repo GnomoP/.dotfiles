@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if lsof -tac script "$(tty)" > /dev/null; then
+  PS1="[script] $PS1"
+fi
+# vim: syntax=sh
+# vim: set ts=2 sw=2 tw=80 et :

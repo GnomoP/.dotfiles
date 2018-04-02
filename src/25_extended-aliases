@@ -1,0 +1,19 @@
+#!/bin/bash
+
+scripte () {
+  if [[ -z "$*" ]]; then
+    script --timing="/tmp/$$_typescript.time" -q "/tmp/$$_typescript"
+  else
+    script "$@"
+  fi
+}
+
+scriptreplaye () {
+  if [[ -z "$*" ]]; then
+    scriptreplay --timing="/tmp/$$_typescript.time" -q "/tmp/$$_typescript"
+  else
+    scriptreplay "$@"
+  fi
+}
+# vim: syntax=sh
+# vim: set ts=2 sw=2 tw=80 et :

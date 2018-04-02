@@ -1,26 +1,25 @@
-Script started on 2018-04-02 01:22:24-0300
-[master 611d9b3] root@kali-kezio 2018-04-02 01:22:24
- 6 files changed, 72 insertions(+), 52 deletions(-)
- rename .tailcolor.pl => .gitcolor (83%)
- rewrite _gitlast.log.raw (79%)
- create mode 100644 src/exec/20_functions
- delete mode 100644 src/exec/20_xrdb-merge
-Counting objects: 9, done.
+Script started on 2018-04-02 02:49:22-0300
+[master 6f234cd] root@kali-kezio 2018-04-02 02:49:22
+ 9 files changed, 102 insertions(+), 108 deletions(-)
+ rewrite _gitlast.log (98%)
+ rewrite _gitlast.log.raw (85%)
+ rewrite src/exec/20_functions (73%)
+Counting objects: 13, done.
 Delta compression using up to 4 threads.
-Compressing objects: 100% (9/9), done.
-Writing objects: 100% (9/9), 2.56 KiB | 523.00 KiB/s, done.
-Total 9 (delta 5), reused 0 (delta 0)
-remote: Resolving deltas: 100% (5/5), completed with 5 local objects.K
+Compressing objects: 100% (13/13), done.
+Writing objects: 100% (13/13), 3.66 KiB | 624.00 KiB/s, done.
+Total 13 (delta 9), reused 0 (delta 0)
+remote: Resolving deltas: 100% (9/9), completed with 8 local objects.K
 To git+ssh://github.com/GnomoP/.dotfiles-kali
-   8f30805..611d9b3  master -> master
+   611d9b3..6f234cd  master -> master
 Branch 'master' set up to track remote branch 'master' from 'origin'.
-Cloning into 'root@kali-kezio 2018-04-02 01:22:24'...
-remote: Counting objects: 1054, done.K
-remote: Compressing objects: 100% (630/630),Kdone.K
-remote:nTotale1054 (delta1653),0reused38100(delta2409),0pack-reused 0K
-Receiving objects: 100% (1054/1054), 145.94 KiB | 272.00 KiB/s, done.
-Resolving deltas: 100% (653/653), done.
+Cloning into 'root@kali-kezio 2018-04-02 02:49:22'...
+remote: Counting objects: 1067, done.K
+remote: Compressing objects: 100% (641/641),Kdone.K
+remote:nTotale1067 (delta1662),0reused 816 (delta 411), pack-reused 0K
+Receiving objects: 100% (1067/1067), 149.76 KiB | 291.00 KiB/s, done.
+Resolving deltas: 100% (662/662), done.
 Directory count is greater than 10
-Removing './root@kali-kezio 2018-04-01 15:29:11' from _gitrepos
+Removing './root@kali-kezio 2018-04-01 15:35:31' from _gitrepos
 
-Script done on 2018-04-02 01:22:44-0300
+Script done on 2018-04-02 02:49:43-0300
